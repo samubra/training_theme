@@ -3,7 +3,7 @@ $(document).ready(function() {
   $(window).bind('load scroll', function(){
      var y = $(window).scrollTop();
      if (y <= 15) {
-       $('#lt-navigation nav').addClass('lt-no-background');
+      // $('#lt-navigation nav').addClass('lt-no-background');
      } else if (y > 15) {
        $('#lt-navigation nav').removeClass('lt-no-background');
      }

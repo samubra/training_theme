@@ -18,11 +18,11 @@ description = "Octaskin Layout"
     {% endif %}
 
     {% if this.theme.load_fontawesome %}
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+      <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     {% endif %}
 
     {% if this.theme.load_material_icons %}
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css" rel="stylesheet">
     {% endif %}
 
     {% if this.theme.load_stroke7_icons %}
@@ -43,7 +43,7 @@ description = "Octaskin Layout"
   </head>
   <body class="lt-theme-{{ this.theme.config.code }} lt-layout-{{ this.layout.id }} lt-page-{{ this.page.id }}">
     <div id="lt-page-surround">
-      <section id="lt-navigation" class="lt-section section lt-no-background">
+      <section id="lt-navigation" class="lt-section section">
         <div class="lt-row row">
           <div class="lt-content lt-navigation-content">
             {% partial "pages-all/navigation" %}
@@ -70,7 +70,7 @@ description = "Octaskin Layout"
       </section>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{ this.theme.jQuery_version }}/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/{{ this.theme.jQuery_version }}/jquery.min.js"></script>
     <script src="{{ ['assets/js/materialize.min.js','assets/js/theme.js']|theme }}"></script>
 
     {% if this.theme.load_octobercms_framework %}

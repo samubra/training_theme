@@ -1,0 +1,25 @@
+name: 边栏菜单
+items:
+    -
+        title: 首页
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: home
+        reference: index
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: mc-nav-item
+            isExternal: '0'
+        items:
+            -
+                title: 首页
+                type: cms-page
+                code: ''
+                reference: index
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'

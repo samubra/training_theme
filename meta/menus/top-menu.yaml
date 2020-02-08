@@ -1,0 +1,11 @@
+name: 页面顶部菜单
+items:
+    -
+        title: 首页
+        type: cms-page
+        code: ''
+        reference: index
+        viewBag:
+            isHidden: '0'
+            cssClass: mc-nav-item
+            isExternal: '0'

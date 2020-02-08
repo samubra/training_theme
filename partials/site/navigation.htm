@@ -1,0 +1,29 @@
+[viewBag]
+
+[staticMenu]
+code = "side-menu"
+==
+<div class="mc-navigation" >
+    <div id="normalMenuHeader" class="mc-header-menu">
+        <span class="mc-button mc-button-icon" mc-action="menu"></span>
+        <span class="mc-button mc-button-icon mc-clickable" mc-action="prev"></span>
+        <label class="mc-title">导航</label>
+    </div>
+    {% for item in staticMenu.menuItems %}
+        <a class="mc-nav-item" mc-action="{{ item.code }}"
+        {% if item.items %}
+           mc-menu="elements"
+        {% else %}
+           href="{{ item.url }}"
+        {% endif %}
+        >{{ item.title }}</a>
+        {% if item.items %}
+            {% for subItem in item.items %}
+                <span class="mc-collapsed" mc-submenu="elements">
+                    <a href="{{ subItem.url }}" class="mc-nav-subitem" mc-action="{{ subItem.code }}">{{ subItem.title }}</a>
+                </span>
+               {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+</div>

@@ -22,12 +22,10 @@ description = "默认模板"
     </head>
     <body mc-layout="hidden-nav">
         {% partial "site/navigation" %}
-
-        {% partial "site/header" %}
-
+        {% partial "site/header" title=this.page.title %}
         <div class="mc-content" style="padding-top: 0px">
             <div class="mc-layout" mc-layout="1">
-                <div class="mc-layout" mc-layout-size="biggest">
+                <div class="mc-layout" mc-layout-size="big">
                     <div class="mc-card">
                         {% page %}
                     </div>
@@ -36,13 +34,6 @@ description = "默认模板"
 
             {% partial "site/footer" %}
         </div>
-
-
-
-
-
-
-
         <!-- Scripts -->
         <script src="{{ 'assets/js/jquery.js'|theme }}"></script>
         <script src="{{ 'assets/js/material-css.js'|theme }}"></script>

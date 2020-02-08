@@ -3,14 +3,14 @@
 [staticMenu topMenu]
 code = "top-menu"
 ==
-<header class="mc-header">
+<div class="mc-header">
     <div class="mc-header-line">
         <span class="mc-button mc-button-icon mc-clickable" mc-action="menu"></span>
-        <label class="mc-title">{{ this.page.title }}</label>
+        <label class="mc-title">a</label>
     </div>
     <div class="mc-tabs-bar">
         {% for item in topMenu.menuItems %}
-            <a class="mc-tab" href="{{ item.url }}" >{{ item.title }}</a>
+        <a class="mc-tab" href="{{ item.url }}" >{{ item.title }}</a>
         {% endfor %}
     </div>
-</header>
+</div>

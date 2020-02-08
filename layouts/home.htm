@@ -24,15 +24,12 @@ description = "首页模板"
     <body mc-layout="front">
         {% partial "site/navigation" %}
 
-        {% partial "site/header" %}
+        {% partial "site/header" title=this.page.title %}
 
         <div class="mc-content">
-
             <div class="mc-layout" mc-layout="1">
-                <div class="mc-layout" mc-layout-size="biggest">
-                    <div class="mc-card">
-                        {% page %}
-                    </div>
+                <div class="mc-card">
+                    {% page %}
                 </div>
             </div>
 

@@ -18,6 +18,8 @@ redirect_page = "accont"
 ==
 use Lovata\Buddies\Facades\AuthHelper;
 use Lovata\Buddies\Models\User;
+use Samubra\Training\Repositories\Train\RecordRepository;
+use Samubra\Training\Repositories\Train\CertificateRepository;
 
 function onStart()
 {
@@ -26,11 +28,24 @@ function onStart()
         $userModel = User::with('certificates','certificates.category')->find($authUser->id);
         if($userModel->certificates_count)
             $this['certificates'] = $userModel->certificates;
-
     }else{
         $this['certificates'] = false;
     }
 
+}
+function onLoadRecords()
+{
+    $recordRepository = new RecordRepository;
+    $certificateRepository = new CertificateRepository;
+    $this['certificateModel'] = $certificateRepository->with('category')->getById(post('id'),['id_num','category_id']);
+    $records = $recordRepository->with('project','status')->where('certificate_id',post('id'))->get();
+    if($records->count())
+    {
+        $this['records'] = $records;
+
+    }else{
+        $this['records'] = false;
+    }
 }
 ==
 <section id="lt-header" class="lt-section lt-section-fullwidth section">
@@ -85,43 +100,8 @@ function onStart()
         </div>
         <div class="col m8 pull-m4">
             <div class="card hoverable">
-                <div class="card-content">
-                    <span class="card-title">我的证书</span>
-                    {% if certificates %}
-                    <p>以下是你所培训过的证书！</p>
-                    {% endif %}
-                    <table class="bordered responsive-table">
-                        <thead>
-                        <tr>
-                            <th data-field="id">姓名</th>
-                            <th data-field="name">培训类别</th>
-                            <th data-field="print_date">发证日期</th>
-                            <th data-field="review_date">应复审日期</th>
-                            <th data-field="invalid_date">失效日期</th>
-                            <th data-field="active ">有效</th>
-                            <th data-field="history ">记录</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% if certificates %}
-                            {% for certificate in certificates %}
-                            <tr>
-                                <td>{{ certificate.name }}</td>
-                                <td>{{ certificate.category.name }}</td>
-                                <td>{{ certificate.print_date }}</td>
-                                <td>{{ certificate.review_date }}</td>
-                                <td>{{ certificate.invalid_date }}</td>
-                                <td>{{ certificate.active ? "<i class='material-icons'>check</i>":"<i class='material-icons'>close</i>" }}</td>
-                                <td><a class="btn-floating"><i class="material-icons">equalizer</i></a></td>
-                            </tr>
-                            {% endfor %}
-                        {% else %}
-                        <tr>
-                            <td colspan="7">还没有证书，先关联证书！<a class="waves-effect waves-light btn">按钮</a></td>
-                        </tr>
-                        {% endif %}
-                        </tbody>
-                    </table>
+                <div class="card-content" id="certificate">
+                    {% partial 'pages-training/certificates_list' %}
                 </div>
             </div>
         </div>

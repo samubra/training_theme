@@ -83,7 +83,7 @@ description = "Octaskin Layout"
 
     {% if this.theme.custom_js %}
       <script>
-      {{ this.theme.custom_js }}
+      {{ this.theme.custom_js|raw }}
       </script>
     {% endif %}
   </body>

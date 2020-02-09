@@ -1,0 +1,46 @@
+description = "证书列表"
+
+[viewBag]
+==
+<span class="card-title">我的证书</span>
+{% if certificates %}
+<p>以下是你所培训过的证书！</p>
+{% endif %}
+<table class="bordered responsive-table">
+    <thead>
+    <tr>
+        <th data-field="number">序号</th>
+        <th data-field="id">姓名</th>
+        <th data-field="name">培训类别</th>
+        <th data-field="print_date">发证日期</th>
+        <th data-field="review_date">应复审日期</th>
+        <th data-field="invalid_date">失效日期</th>
+        <th data-field="active ">有效</th>
+        <th data-field="history ">记录</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if certificates %}
+    {% for certificate in certificates %}
+    <tr data-request-data="id: {{ certificate.id }}">
+        <td>{{ loop.index }}</td>
+        <td>{{ certificate.name }}</td>
+        <td>{{ certificate.category.name }}</td>
+        <td>{{ certificate.print_date }}</td>
+        <td>{{ certificate.review_date }}</td>
+        <td>{{ certificate.invalid_date }}</td>
+        <td>{{ certificate.active ? "<i class='material-icons'>check</i>":"<i class='material-icons'>close</i>" }}</td>
+        <td>
+            <a class="btn-floating" data-request-update="'pages-training/record_details':'#certificate'" data-request="onLoadRecords" >
+                <i class="material-icons">equalizer</i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan="7">还没有证书，先关联证书！<a class="waves-effect waves-light btn">按钮</a></td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>

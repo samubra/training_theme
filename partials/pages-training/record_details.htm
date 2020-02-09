@@ -1,0 +1,45 @@
+description = "培训记录"
+
+[viewBag]
+==
+<a class="waves-effect waves-light btn-small" data-request-update="'pages-training/certificates_list':'#certificate'" data-request="onStart" >
+    <i class="material-icons">arrow_back</i>
+</a>
+<span class="card-title">证书 {{ certificateModel.id_num }}({{ certificateModel.category.name }})的培训记录</span>
+
+{% if records %}
+<p>以下是该证书的培训记录！</p>
+{% endif %}
+<table class="bordered responsive-table">
+    <thead>
+    <tr>
+        <th data-field="number">序号</th>
+        <th data-field="date">培训时间</th>
+        <th data-field="edu">文化程度</th>
+        <th data-field="phone">联系电话</th>
+        <th data-field="company">单位名称</th>
+        <th data-field="status">状态</th>
+        <th data-field="score">成绩</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% if records %}
+    {% for record in records %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ record.project.training_begin_date }}至{{ record.project.training_end_date }}</td>
+        <td>{{ record.edu_type_text }}</td>
+        <td>{{ record.record_phone }}</td>
+        <td>{{ record.record_company }}</td>
+        <td>{{ record.status.name }}</td>
+        <td>理论：{{ record.theory_score }}，操作：{{ record.operate_score }}({{ record.is_eligible ? '通过':'未通过'}})</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan="7">还没有培训记录！</td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>

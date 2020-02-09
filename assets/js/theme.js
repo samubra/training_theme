@@ -41,5 +41,5 @@ $(document).ready(function() {
     selectMonths: true,
     selectYears: 15
   });
-
+    M.textareaAutoResize($('.materialize-textarea'));
 });

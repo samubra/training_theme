@@ -1,0 +1,37 @@
+[viewBag]
+
+
+==
+<div class="row">
+    <div class="col l6 offset-l3">
+        <div class="card hoverable">
+            <div class="card-content">
+            {% set arError = partialLogin.getErrorMessage %}
+            {% set arForm = partialLogin.getOldFormData %}
+            <form data-request="partialLogin::onAjax">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="field-email" type="email" value="{{ arForm.email }}" name="email" class="validate">
+                        <label for="email" data-error="格式错误" data-success="格式正确">用户名(邮件地址)</label>
+                        {% if arError.message is not empty and arError.field == 'email' %}
+                        <p>{{ arError.message }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="field-password" name="password" type="password" class="validate">
+                        <label for="password">密码</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light btn-large" type="submit" name="action">登录
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+            {% if arError.message is not empty %}
+            <p>{{ arError.message }}</p>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

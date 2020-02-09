@@ -1,0 +1,137 @@
+title = "个人中心"
+url = "/accont"
+layout = "octaskin"
+is_hidden = 0
+
+[UserData]
+
+[Logout]
+mode = "ajax"
+redirect_on = 1
+redirect_page = "index"
+
+[Login partialLogin]
+mode = "ajax"
+flash_on = 1
+redirect_on = 1
+redirect_page = "accont"
+==
+use Lovata\Buddies\Facades\AuthHelper;
+use Lovata\Buddies\Models\User;
+
+function onStart()
+{
+    if(AuthHelper::check()){
+        $authUser = AuthHelper::getUser();
+        $userModel = User::with('certificates','certificates.category')->find($authUser->id);
+        if($userModel->certificates_count)
+            $this['certificates'] = $userModel->certificates;
+
+    }else{
+        $this['certificates'] = false;
+    }
+
+}
+==
+<section id="lt-header" class="lt-section lt-section-fullwidth section">
+    <div class="lt-container container">
+        <div class="lt-content lt-header-content">
+            <div class="lt-row row">
+                <div class="lt-col col s12">
+                    <div class="lt-parallax-header parallax-container" style="height: 120px;">
+                        <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
+                        <div class="lt-parallax-content">
+                            <div class="valign-wrapper" style="height: 110px;">
+                                <div class="valign">
+                                    <h2 class="lt-title">个人中心</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% set obUser = UserData.get %}
+
+<div class="container">
+    {% if obUser.isNotEmpty %}
+    <div class="row">
+
+        <div class="col m4 push-m8">
+            <div class="card hoverable">
+
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="{{ obUser.avatar['path'] }}">
+                    </div>
+
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ obUser.name }} {{ obUser.last_name }}<i class="material-icons right">more_vert</i></span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ obUser.name }} {{ obUser.last_name }} 的个人介绍<i class="material-icons right">close</i></span>
+                        <p>{{ obUser.property['introduction']|raw }}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" data-request="Logout::onAjax">注销</a>
+                        <a href="#">认证</a>
+                    </div>
+                    <ul class="collection">
+                        <li class="collection-item">邮箱：{{ obUser.name }}</li>
+                        <li class="collection-item">联系电话：{{ obUser.phone }}</li>
+                    </ul>
+            </div>
+        </div>
+        <div class="col m8 pull-m4">
+            <div class="card hoverable">
+                <div class="card-content">
+                    <span class="card-title">我的证书</span>
+                    {% if certificates %}
+                    <p>以下是你所培训过的证书！</p>
+                    {% endif %}
+                    <table class="bordered responsive-table">
+                        <thead>
+                        <tr>
+                            <th data-field="id">姓名</th>
+                            <th data-field="name">培训类别</th>
+                            <th data-field="print_date">发证日期</th>
+                            <th data-field="review_date">应复审日期</th>
+                            <th data-field="invalid_date">失效日期</th>
+                            <th data-field="active ">有效</th>
+                            <th data-field="history ">记录</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if certificates %}
+                            {% for certificate in certificates %}
+                            <tr>
+                                <td>{{ certificate.name }}</td>
+                                <td>{{ certificate.category.name }}</td>
+                                <td>{{ certificate.print_date }}</td>
+                                <td>{{ certificate.review_date }}</td>
+                                <td>{{ certificate.invalid_date }}</td>
+                                <td>{{ certificate.active ? "<i class='material-icons'>check</i>":"<i class='material-icons'>close</i>" }}</td>
+                                <td><a class="btn-floating"><i class="material-icons">equalizer</i></a></td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="7">还没有证书，先关联证书！<a class="waves-effect waves-light btn">按钮</a></td>
+                        </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="card-panel teal">
+              <span class="white-text center">你还未登录，请先登录
+              </span>
+        </div>
+        {% partial "pages-auth/login-form" %}
+    {% endif %}
+
+</div>

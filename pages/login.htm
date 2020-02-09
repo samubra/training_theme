@@ -1,0 +1,39 @@
+title = "登录"
+url = "/login"
+layout = "octaskin"
+is_hidden = 0
+
+[Login partialLogin]
+mode = "ajax"
+flash_on = 1
+redirect_on = 1
+redirect_page = "accont"
+==
+<section id="lt-header" class="lt-section lt-section-fullwidth section">
+    <div class="lt-container container">
+        <div class="lt-content lt-header-content">
+            <div class="lt-row row">
+                <div class="lt-col col s12">
+                    <div class="lt-parallax-header parallax-container" style="height: 220px;">
+                        <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
+                        <div class="lt-parallax-content">
+                            <div class="valign-wrapper" style="height: 320px;">
+                                <div class="valign">
+                                    <h2 class="lt-title">登入系统</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="lt-mainpage" class="lt-section section">
+    <div class="lt-container container">
+        <div class="lt-content lt-mainpage-content">
+            {% partial "pages-auth/login-form" %}
+        </div>
+    </div>
+</section>

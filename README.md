@@ -29,7 +29,9 @@ ul#mobile-menu  li.active a{
     }
 
 js:
-$("ul.pagination li").addClass('waves-effect');
+$(document).ready(function() {
+        $("ul.pagination li").addClass('waves-effect');
 var activeText = $("ul.pagination li.active").text();
 $("ul.pagination li.active").html("<a>"+activeText+"</a>");
 $('#lt-navigation nav').removeClass('lt-no-background');
+    });

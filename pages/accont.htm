@@ -15,7 +15,25 @@ mode = "ajax"
 flash_on = 1
 redirect_on = 1
 redirect_page = "accont"
+
+[UserPage]
+slug = "{{ :slug }}"
+slug_required = 0
+flash_on = 1
+redirect_on = 0
+redirect_page = "accont"
+login_page = "login"
+
+[ChangePassword]
+slug = "{{ :slug }}"
+slug_required = 0
+mode = "ajax"
+flash_on = 1
+redirect_on = 0
+redirect_page = "accont"
+check_old_password = 1
 ==
+<?php
 use Lovata\Buddies\Facades\AuthHelper;
 use Lovata\Buddies\Models\User;
 use Samubra\Training\Repositories\Train\RecordRepository;
@@ -47,6 +65,7 @@ function onLoadRecords()
         $this['records'] = false;
     }
 }
+?>
 ==
 <section id="lt-header" class="lt-section lt-section-fullwidth section">
     <div class="lt-container container">
@@ -90,6 +109,8 @@ function onLoadRecords()
                     </div>
                     <div class="card-action">
                         <a href="#" data-request="Logout::onAjax">注销</a>
+                        <a href="#" data-request="Logout::onAjax">修改密码</a>
+                        <a data-request-update="'pages-auth/edit-user-form':'#accont'" class="btn" data-request="onStart">修改资料</a>
                         <a href="#">认证</a>
                     </div>
                     <ul class="collection">
@@ -100,7 +121,7 @@ function onLoadRecords()
         </div>
         <div class="col m8 pull-m4">
             <div class="card hoverable">
-                <div class="card-content" id="certificate">
+                <div class="card-content" id="accont">
                     {% partial 'pages-training/certificates_list' %}
                 </div>
             </div>

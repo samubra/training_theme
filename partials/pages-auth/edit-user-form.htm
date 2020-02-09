@@ -1,0 +1,37 @@
+[viewBag]
+
+
+==
+{% set arError = UserPage.getErrorMessage %}
+{% set arForm = UserPage.getOldFormData %}
+
+<form data-request="UserPage::onAjax">
+    <div class="row">
+        <div class="input-field col s12">
+            <input type="text" id="field-name" name="name" value="{{ arForm.name }}" class="validate">
+            <label for="field-name">姓名</label>
+        </div>
+        <div class="input-field col s12">
+            <input type="text" id="field-phone" name="name" value="{{ arForm.phone }}" class="validate">
+            <label for="field-phone">联系电话</label>
+        </div>
+        <div class="input-field col s12">
+            <textarea id="field-introductio" class="materialize-textarea"></textarea>
+            <label for="field-introductio">自我介绍</label>
+        </div>
+    </div>
+    <button class="btn waves-effect waves-light btn-large" type="submit" name="action">修改
+        <i class="material-icons right">send</i>
+    </button>
+</form>
+{% if arError.message is not empty %}
+<p>{{ arError.message }}</p>
+{% endif %}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#field-introductio').val("{{ arForm.introductio }}");
+        M.textareaAutoResize($('#field-introductio'));
+    });
+
+</script>

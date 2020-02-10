@@ -32,6 +32,8 @@ flash_on = 1
 redirect_on = 0
 redirect_page = "accont"
 check_old_password = 1
+
+[userCertificates]
 ==
 <?php
 use Lovata\Buddies\Facades\AuthHelper;
@@ -39,32 +41,6 @@ use Lovata\Buddies\Models\User;
 use Samubra\Training\Repositories\Train\RecordRepository;
 use Samubra\Training\Repositories\Train\CertificateRepository;
 
-function onStart()
-{
-    if(AuthHelper::check()){
-        $authUser = AuthHelper::getUser();
-        $userModel = User::with('certificates','certificates.category')->find($authUser->id);
-        if($userModel->certificates_count)
-            $this['certificates'] = $userModel->certificates;
-    }else{
-        $this['certificates'] = false;
-    }
-
-}
-function onLoadRecords()
-{
-    $recordRepository = new RecordRepository;
-    $certificateRepository = new CertificateRepository;
-    $this['certificateModel'] = $certificateRepository->with('category')->getById(post('id'),['id_num','category_id']);
-    $records = $recordRepository->with('project','status')->where('certificate_id',post('id'))->get();
-    if($records->count())
-    {
-        $this['records'] = $records;
-
-    }else{
-        $this['records'] = false;
-    }
-}
 ?>
 ==
 <section id="lt-header" class="lt-section lt-section-fullwidth section">
@@ -94,34 +70,11 @@ function onLoadRecords()
     <div class="row">
 
         <div class="col m4 push-m8">
-            <div class="card hoverable">
-
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img src="{{ obUser.avatar['path'] }}">
-                    </div>
-
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ obUser.name }} {{ obUser.last_name }}<i class="material-icons right">more_vert</i></span>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ obUser.name }} {{ obUser.last_name }} 的个人介绍<i class="material-icons right">close</i></span>
-                        <p>{{ obUser.property['introduction']|raw }}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#" data-request="Logout::onAjax">注销</a>
-                        <a href="#" data-request="Logout::onAjax">修改密码</a>
-                        <a data-request-update="'pages-auth/edit-user-form':'#accont'" class="btn" data-request="onStart">修改资料</a>
-                        <a href="#">认证</a>
-                    </div>
-                    <ul class="collection">
-                        <li class="collection-item">邮箱：{{ obUser.name }}</li>
-                        <li class="collection-item">联系电话：{{ obUser.phone }}</li>
-                    </ul>
-            </div>
+            {% partial 'pages-auth/user-data' obUser=obUser %}
         </div>
         <div class="col m8 pull-m4">
             <div class="card hoverable">
-                <div class="card-content" id="accont">
+                <div class="card-content" id="account">
                     {% partial 'pages-training/certificates_list' %}
                 </div>
             </div>

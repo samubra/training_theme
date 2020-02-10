@@ -15,7 +15,7 @@
     <div class="card-action">
         <a href="#" data-request="Logout::onAjax">注销</a>
         <a href="#" data-request="Logout::onAjax" >修改密码</a>
-        <a data-request-update="'pages-auth/edit-user-form':'#accont'" data-request="onStart">修改资料</a>
+        <a data-request-data="partial:'pages-auth/edit-user-form',select:'#account'" data-request="userCertificates::onLoadUserData">修改资料</a>
     </div>
     <ul class="collection">
         <li class="collection-item">邮箱：{{ obUser.email }}</li>

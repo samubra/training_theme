@@ -8,7 +8,7 @@ $(document).ready(function() {
        $('#lt-navigation nav').removeClass('lt-no-background');
      }
   });
-  $('.lt-mobile-toggle').sideNav();
+  $('.sidenav').sidenav();
 
   // Slider
   $('.lt-slider').slider({full_width: true});
@@ -24,22 +24,20 @@ $(document).ready(function() {
   $('.lt-tabs').tabs();
 
   // Modal
-  $('.lt-modal-trigger').leanModal();
+  $('.lt-modal-trigger').modal();
 
   // Owl Carousel
   $('.owl-carousel').owlCarousel({
       loop:true,
       items: 1,
       center: true
-  })
+  });
 
   // Select
-  $('select').material_select();
+  $('select').formSelect();
 
   // DatePicker
-  $('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15
-  });
-    M.textareaAutoResize($('.materialize-textarea'));
+  $('.datepicker').datepicker();
+
+    $('.parallax').parallax();
 });

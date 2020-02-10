@@ -24,7 +24,7 @@ description = "Octaskin Layout"
     {% if this.theme.load_material_icons %}
       <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css" rel="stylesheet">
     {% endif %}
-
+    <link href="{{ 'assets/css/materialize.min.css'|theme }}" rel="stylesheet">
     {% if this.theme.load_stroke7_icons %}
       <link href="{{ 'assets/css/stroke7/stroke7-icon-font.min.css'|theme }}" rel="stylesheet">
     {% endif %}
@@ -44,34 +44,32 @@ description = "Octaskin Layout"
   <body class="lt-theme-{{ this.theme.config.code }} lt-layout-{{ this.layout.id }} lt-page-{{ this.page.id }}">
     <div id="lt-page-surround">
       <section id="lt-navigation" class="lt-section section">
-        <div class="lt-row row">
+        <div class="lt-row">
           <div class="lt-content lt-navigation-content">
             {% partial "pages-all/navigation" %}
           </div>
         </div>
       </section>
-
       {% page %}
 
-      <section id="lt-footer" class="lt-section section">
-        <div class="lt-container container">
-          <div class="lt-content lt-footer-content">
-            {% partial "pages-all/footer" %}
-          </div>
-        </div>
-      </section>
 
-      <section id="lt-copyright" class="lt-section section">
-        <div class="lt-container container">
-          <div class="lt-content lt-copyright-content">
-            {% partial "pages-all/copyright" %}
+      <footer class="page-footer lt-section">
+        <div class="container">
+          {% partial "pages-all/footer" %}
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
           </div>
         </div>
-      </section>
+      </footer>
+
     </div>
 
     <script src="https://cdn.bootcss.com/jquery/{{ this.theme.jQuery_version }}/jquery.min.js"></script>
-    <script src="{{ ['assets/js/materialize.min.js','assets/js/theme.js']|theme }}"></script>
+    <script src="https://cdn.bootcss.com/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="{{ ['assets/js/theme.js']|theme }}"></script>
 
     {% if this.theme.load_octobercms_framework %}
       {% framework extras %}

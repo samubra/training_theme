@@ -2,22 +2,30 @@ css:
 .lt-content {
   padding: 0 0;
 }
-.padding-top{
-    margin-top: 70px;
-}
-.lt-parallax-header{
-    margin-top: 70px;
-    height:220px;
-    }
-.valign-wrapper{
-    height:320px;
-}
-.collection-horizontal{
-    position: relative; height: 70px;
-}
 .collection-horizontal-btn{
     position: absolute; display: inline-block; right: 24px;
 }
+#lt-navigation nav{
+    background-color:#ff5722;
+}
+#lt-navigation{
+  padding-top:0px;
+  padding-bottom: 0px;
+}
+.page-footer{
+    background-color:#455A64;  
+    color:#8FA1A6;
+}
+.footer-copyright{
+    background-color:#37474F; 
+    color:#E4500D;
+    }
+ul#mobile-menu  li a{
+    color:#000;
+    }
+ul#mobile-menu  li.active a{
+    color:#a22700;
+    }
 #lt-navigation nav{
     background-color:#ff5722;
 }

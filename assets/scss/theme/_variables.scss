@@ -95,7 +95,7 @@ $button-floating-radius: 50% !default;
 $card-padding: 20px !default;
 $card-bg-color: #fff !default;
 $card-link-color: color("orange", "accent-2") !default;
-$card-link-color-light: lighten($card-link-color, 20%) !default;
+/*$card-link-color-light: lighten($card-link-color, 20%) !default;
 
 
 /* 5. Collapsible
@@ -161,7 +161,7 @@ $input-disabled-color: rgba(0,0,0, .26) !default;
 $input-disabled-solid-color: #BDBDBD !default;
 $input-disabled-border: 1px dotted $input-disabled-color !default;
 $input-invalid-border: 1px solid $input-error-color !default;
-$placeholder-text-color: lighten($input-border-color, 20%) !default;
+/*$placeholder-text-color: lighten($input-border-color, 20%) !default;*/
 
 // Radio Buttons
 $radio-fill-color: $secondary-color !default;

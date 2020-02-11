@@ -20,16 +20,16 @@ description = "Octaskin Layout"
     {% if this.theme.load_fontawesome %}
       <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     {% endif %}
-
+    <link href="{{ 'assets/css/materialize.min.css'|theme }}" rel="stylesheet">
     {% if this.theme.load_material_icons %}
       <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css" rel="stylesheet">
     {% endif %}
-    <link href="{{ 'assets/css/materialize.min.css'|theme }}" rel="stylesheet">
+
     {% if this.theme.load_stroke7_icons %}
       <link href="{{ 'assets/css/stroke7/stroke7-icon-font.min.css'|theme }}" rel="stylesheet">
     {% endif %}
 
-    <link href="{{ ['assets/scss/style.scss']|theme }}" rel="stylesheet">
+
 
     {% partial "_addons/css" %}
 

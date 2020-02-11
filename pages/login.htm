@@ -7,33 +7,22 @@ is_hidden = 0
 mode = "ajax"
 flash_on = 1
 redirect_on = 1
-redirect_page = "accont"
+redirect_page = "account"
 ==
-<section id="lt-header" class="lt-section lt-section-fullwidth section">
-    <div class="lt-container container">
-        <div class="lt-content lt-header-content">
-            <div class="lt-row row">
-                <div class="lt-col col s12">
-                    <div class="lt-parallax-header parallax-container" style="height: 220px;">
-                        <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
-                        <div class="lt-parallax-content">
-                            <div class="valign-wrapper" style="height: 320px;">
-                                <div class="valign">
-                                    <h2 class="lt-title">登入系统</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div id="login">
+    <div class="lt-parallax-header parallax-container" style="height: 120px;">
+        <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
+        <div class="lt-parallax-content">
+            <div class="center-align white-text" style="height: 110px;">
+                <h2 class="lt-title ">登入系统</h2>
             </div>
         </div>
     </div>
-</section>
-
-<section id="lt-mainpage" class="lt-section section">
-    <div class="lt-container container">
-        <div class="lt-content lt-mainpage-content">
-            {% partial "pages-auth/login-form" %}
+    <section id="lt-mainpage" class="lt-section section">
+        <div class="lt-container container">
+            <div class="lt-content lt-mainpage-content">
+                {% partial "pages-auth/login-form" %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>

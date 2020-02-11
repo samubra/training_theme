@@ -8,12 +8,12 @@
             <div class="card-content" >
             {% set arError = partialLogin.getErrorMessage %}
             {% set arForm = partialLogin.getOldFormData %}
-            <form data-request="partialLogin::onAjax">
+            <form data-request="partialLogin::onAjax" data-request-flash >
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="field-email" type="email" value="{{ arForm.email }}" name="email" class="validate">
-                        <label for="field-email" data-error="格式错误" data-success="格式正确">用户名(邮件地址)</label>
+                        <input id="field-email" type="text" value="{{ arForm.email }}" name="email" class="validate">
+                        <label for="field-email" >用户名(邮件地址或身份证号码)</label>
                         {% if arError.message is not empty and arError.field == 'email' %}
                         <p>{{ arError.message }}</p>
                         {% endif %}
@@ -24,9 +24,14 @@
                         <label for="field-password">密码</label>
                     </div>
                 </div>
-                <button class="btn waves-effect waves-light btn-large" type="submit" name="action">登录
-                    <i class="material-icons right">send</i>
-                </button>
+                <div class="card-action">
+                    <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">登录
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <a href="#" class="waves-effect waves-light">忘记密码</a>
+                    <a class="waves-effect waves-light" href="{{ 'registration'|page }}">注册</a>
+                </div>
+
             </form>
             {% if arError.message is not empty %}
             <p>{{ arError.message }}</p>

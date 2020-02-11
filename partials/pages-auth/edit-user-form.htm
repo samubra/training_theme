@@ -4,22 +4,23 @@
 {% set userError = UserPage.getErrorMessage %}
 {% set userForm = UserPage.getOldFormData %}
 
-<form data-request="UserPage::onAjax">
+<form data-request="UserPage::onAjax" data-request-redirect="{{ 'account'|page }}" data-request-flash>
     <div class="row">
         <div class="input-field col s12">
-            <input type="text" id="field-name" name="name" value="{{ userModel.name }}" class="validate">
-            <label for="field-name">姓名</label>
+            <input type="text" id="field-name" name="name" value="{{ userModel.name }}" class="validate valid">
+            <label for="field-name" class="active">姓名</label>
         </div>
         <div class="input-field col s12">
             <input type="text" id="field-phone" name="phone" value="{{ userModel.phone }}" class="validate">
-            <label for="field-phone">联系电话</label>
+            <label for="field-phone" class="active">联系电话</label>
         </div>
         <div class="input-field col s12">
-            <textarea id="field-introduction" class="materialize-textarea" name="property[introduction]">{{ userModel.property['introduction'] }}</textarea>
-            <label for="field-introduction">自我介绍</label>
+            <textarea id="field-introduction" class="materialize-textarea" name="property[introduction]">{{
+                userModel.property['introduction'] }}</textarea>
+            <label for="field-introduction" class="active">自我介绍</label>
         </div>
     </div>
-    <button class="btn waves-effect waves-light btn-large" type="submit" name="action">修改
+    <button class="btn waves-effect waves-light btn-large" type="submit" name="action" data-attach-loading>修改
         <i class="material-icons right">send</i>
     </button>
 </form>

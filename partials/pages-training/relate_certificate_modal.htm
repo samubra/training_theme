@@ -1,0 +1,30 @@
+description = "关联证书"
+
+[viewBag]
+==
+<form class="col s12" data-request-flash data-request="userCertificates">
+    <div class="modal-content">
+        <h4>关联证书</h4>
+        <div class="row">
+            <div class="input-field col s12">
+                <input {% if userModel.identity %} disabled  {% endif %} id="identity" type="text"
+                       value="{{ userModel.identity }}"
+                       class="validate">
+                <label for="identity" class="active">身份证号码</label>
+                <span class="helper-text" >
+                    {% if userModel.identity %}
+                        你已输入过身份证号码进行关联，不可更改！
+                    {% else %}
+                        输入身份证号码来关联证书，将不可修改！
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn waves-effect waves-light" type="submit" name="action" {% if userModel.identity %} disabled  {% endif %}>关联
+            <i class="material-icons right">send</i>
+        </button>
+
+    </div>
+</form>

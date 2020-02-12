@@ -12,7 +12,7 @@ description = "证书列表"
         <th data-field="number">序号</th>
         <th data-field="id">姓名</th>
         <th data-field="name">培训类别</th>
-        <th data-field="print_date">发证日期</th>
+        <th data-field="pri nt_date">发证日期</th>
         <th data-field="review_date">应复审日期</th>
         <th data-field="invalid_date">失效日期</th>
         <th data-field="active ">有效</th>
@@ -20,7 +20,7 @@ description = "证书列表"
     </tr>
     </thead>
     <tbody>
-    {% if certificates %}
+    {% if certificates.count() %}
     {% for certificate in certificates %}
     <tr data-request-data="certificate_id: {{ certificate.id }},partial: 'pages-training/record_lists',select:'#account'">
         <td>{{ loop.index }}</td>
@@ -39,7 +39,13 @@ description = "证书列表"
     {% endfor %}
     {% else %}
     <tr>
-        <td colspan="8" >还没有证书，先关联证书！
+        <td colspan="8" >还没有证书，先关联证书或者参加培训！{{ userModel.identity }}
+            {% if userModel.identity %}
+                <a class="waves-effect waves-light btn modal-trigger"
+                   href=" {{ 'home'|page }}"
+                >
+                    参加培训</a>
+            {% else %}
             <div
                     data-request-data="partial:'pages-training/relate_certificate_modal',select:'#relate-certificate-modal'">
                 <a class="waves-effect waves-light btn modal-trigger" href="#relate-certificate-modal"
@@ -47,6 +53,7 @@ description = "证书列表"
                    >
                     关联证书</a>
             </div>
+            {% endif %}
         </td>
     </tr>
     {% endif %}

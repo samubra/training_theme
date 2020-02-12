@@ -1,0 +1,20 @@
+items:
+    -
+        title: Home
+        type: cms-page
+        code: ''
+        reference: home
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 个人中心
+        type: cms-page
+        code: ''
+        reference: account
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: 页面顶部菜单

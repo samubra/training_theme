@@ -40,7 +40,7 @@ $(document).ready(function() {
   $('.datepicker').datepicker();
 
     $('.parallax').parallax();
-    $('input, textarea.materialize-textarea').characterCounter();
     $('.materialboxed').materialbox();
     $('.modal').modal();
+    $('.tabs').tabs();
 });

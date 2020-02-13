@@ -1,0 +1,58 @@
+[viewBag]
+==
+<div class="row">
+    <div class="col l6 offset-l3">
+        <div class="card hoverable">
+            <div class="card-content" >
+                <form data-request="onRegister" data-request-validate
+                      data-request-update="pages-auth/register_result:#register">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <input id="registerEmail" type="email" name="email"
+                               class="validate">
+                        <label for="registerEmail" >电子邮件地址</label>
+                        <span class="helper-text invalid" data-error="wrong" data-success="right"
+                              data-validate-for="email">电子邮件地址格式不正确</span>
+                    </div>
+                    {% if loginAttribute == "username" %}
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_box</i>
+                            <input id="registerUsername" type="text" name="username"
+                                   class="validate">
+                            <label for="registerUsername" >登录用户名</label>
+                            <span class="helper-text invalid" data-validate-for="username"></span>
+                        </div>
+                    {% endif %}
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="registerName" type="text" name="name"
+                               class="validate">
+                        <label for="registerName" >姓名</label>
+                        <span class="helper-text invalid" data-validate-for="name"></span>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="registerPassword" name="password" type="password" class="validate">
+                        <label for="registerPassword">密码</label>
+                        <span class="helper-text invalid" data-validate-for="password"></span>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="field-password-confirmation" type="password" value="" name="password_confirmation" class="validate">
+                        <label for="field-password-confirmation" >再次输入密码</label>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit"
+                            name="action">注册
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+
+            {{ form_close() }}
+            </div>
+        </div>
+    </div>
+</div>

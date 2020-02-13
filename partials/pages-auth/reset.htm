@@ -1,0 +1,28 @@
+<div class="card-panel teal">
+        <span class="white-text">
+            登录你的邮箱，将受到的验证码和新密码输入到下面的表单中进行重置密码。
+        </span>
+</div>
+<form
+        data-request="resetPassword:onRestorePassword"
+        data-request-update="'pages-auth/complete': '#partialUserResetForm'">
+    <div class="row">
+        <div class="input-field col s12">
+            <i class="material-icons prefix">code</i>
+            <input id="userRestoreEmail" type="text" name="code" value="{{ resetPassword.code }}" class="validate">
+            <label for="userRestoreEmail" data-error="格式错误" data-success="格式正确">激活码</label>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="resetPassword" type="password" name="password" class="validate">
+            <label for="resetPassword" data-error="格式错误" data-success="格式正确">新密码</label>
+        </div>
+    </div>
+
+
+    <button class="btn waves-effect waves-light btn-large" type="submit"
+            name="action">重置密码
+        <i class="material-icons right">send</i>
+    </button>
+
+</form>

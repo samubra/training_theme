@@ -1,0 +1,23 @@
+<div class="card-panel teal">
+        <span class="white-text">
+            填写注册时提交的Email地址，将发送一封电子邮件到你的邮箱。登录你的邮箱，按照邮件内容提示找回密码！
+        </span>
+</div>
+<form
+        data-request="resetPassword:onRestorePassword"
+        data-request-update="'pages-auth/reset': '#partialUserResetForm'">
+    <div class="row">
+        <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input id="userRestoreEmail" type="email" name="email" class="validate">
+            <label for="userRestoreEmail" data-error="格式错误" data-success="格式正确">邮件地址</label>
+        </div>
+    </div>
+
+
+    <button class="btn waves-effect waves-light btn-large" type="submit"
+            name="action">发送找回密码邮件
+        <i class="material-icons right">send</i>
+    </button>
+
+</form>

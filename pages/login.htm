@@ -3,26 +3,26 @@ url = "/login"
 layout = "octaskin"
 is_hidden = 0
 
-[Login partialLogin]
-mode = "ajax"
-flash_on = 1
-redirect_on = 1
-redirect_page = "account"
+[account]
+paramCode = "code"
+forceSecure = 0
+
+[session]
+security = "guest"
+redirect = "account"
 ==
-<div id="login">
-    <div class="lt-parallax-header parallax-container" style="height: 120px;">
-        <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
-        <div class="lt-parallax-content">
-            <div class="center-align white-text" style="height: 110px;">
-                <h2 class="lt-title ">登入系统</h2>
-            </div>
+<div class="lt-parallax-header parallax-container" style="height: 120px;">
+    <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
+    <div class="lt-parallax-content">
+        <div class="center-align white-text" style="height: 110px;">
+            <h2 class="lt-title ">登入系统</h2>
         </div>
     </div>
-    <section id="lt-mainpage" class="lt-section section">
-        <div class="lt-container container">
-            <div class="lt-content lt-mainpage-content">
-                {% partial "pages-auth/login-form" %}
-            </div>
-        </div>
-    </section>
+</div>
+
+<div class="container">
+    {% if not user %}
+        {% partial "pages-auth/login-form" %}
+    {% endif %}
+
 </div>

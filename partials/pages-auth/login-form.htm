@@ -1,41 +1,42 @@
 [viewBag]
-
-
 ==
 <div class="row">
     <div class="col l6 offset-l3">
         <div class="card hoverable">
             <div class="card-content" >
-            {% set arError = partialLogin.getErrorMessage %}
-            {% set arForm = partialLogin.getOldFormData %}
-            <form data-request="partialLogin::onAjax" data-request-flash >
+                <form data-request="onSignin" data-request-validate>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="field-email" type="text" value="{{ arForm.email }}" name="email" class="validate">
-                        <label for="field-email" >用户名(邮件地址或身份证号码)</label>
-                        {% if arError.message is not empty and arError.field == 'email' %}
-                        <p>{{ arError.message }}</p>
-                        {% endif %}
+                        <input id="userSigninLogin" type="text" name="login"
+                               class="validate">
+                        <label for="userSigninLogin" >{{ loginAttributeLabel|lower }}</label>
+                        <span class="helper-text invalid" data-validate-for="login"></span>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">vpn_key</i>
-                        <input id="field-password" name="password" type="password" class="validate">
-                        <label for="field-password">密码</label>
+                        <input id="userSigninPassword" name="password" type="password" class="validate">
+                        <label for="userSigninPassword">密码</label>
+                        <span class="helper-text invalid" data-validate-for="password"></span>
                     </div>
+                    {% if rememberLoginMode == 'ask' %}
+                        <div class="input-field col s12">
+                            <label>
+                                <input name="remember" type="checkbox" value="1">
+                                <span>记住登录状态</span>
+                            </label>
+                        </div>
+                    {% endif %}
+
                 </div>
                 <div class="card-action">
                     <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">登录
                         <i class="material-icons right">send</i>
                     </button>
                     <a href="#" class="waves-effect waves-light">忘记密码</a>
-                    <a class="waves-effect waves-light" href="{{ 'registration'|page }}">注册</a>
                 </div>
 
-            </form>
-            {% if arError.message is not empty %}
-            <p>{{ arError.message }}</p>
-            {% endif %}
+            {{ form_close() }}
             </div>
         </div>
     </div>

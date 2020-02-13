@@ -1,40 +1,15 @@
 title = "个人中心"
-url = "/account"
+url = "/account/:code?"
 layout = "octaskin"
 is_hidden = 0
 
-[UserData]
+[account]
+paramCode = "code"
+forceSecure = 0
 
-[Logout]
-mode = "ajax"
-redirect_on = 1
-redirect_page = "account"
-
-[Login partialLogin]
-mode = "ajax"
-flash_on = 1
-redirect_on = 1
-redirect_page = "account"
-
-[UserPage]
-slug = "{{ :slug }}"
-slug_required = 0
-flash_on = 1
-redirect_on = 0
-redirect_page = "account"
-login_page = "login"
-
-[ChangePassword]
-slug = "{{ :slug }}"
-slug_required = 0
-mode = "ajax"
-flash_on = 1
-redirect_on = 0
-redirect_page = "account"
-check_old_password = 1
-
-[userCertificates]
-
+[session]
+security = "user"
+redirect = "login"
 ==
 <div class="lt-parallax-header parallax-container" style="height: 120px;">
     <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
@@ -44,29 +19,40 @@ check_old_password = 1
         </div>
     </div>
 </div>
-{% set obUser = UserData.get %}
 
 <div class="container">
-    {% if obUser.isNotEmpty %}
-    <div class="row">
-
-        <div class="col m4 push-m8">
-            {% partial 'pages-auth/user-data' obUser=obUser userCertificates=userCertificates %}
-        </div>
-        <div class="col m8 pull-m4">
-            <div class="card hoverable">
-                <div class="card-content" id="account">
-                    {% partial 'pages-training/certificates_list' %}
+    {% if not user %}
+            <div class="row">
+                <div class="col l6 offset-l3">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" href="#login">登入系统</a></li>
+                        {% if canRegister %}
+                            <li class="tab col s3"><a href="#register">注册用户</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div id="login" class="col s12">
+                    {% partial "pages-auth/login-form" %}
+                </div>
+                {% if canRegister %}
+                    <div id="register" class="col s12">
+                        {% partial "pages-auth/register-form" %}
+                    </div>
+                {% endif %}
+            </div>
+    {% else %}
+        <div class="row">
+            <div class="col m4 push-m8">
+                {% partial 'pages-auth/user-data' %}
+            </div>
+            <div class="col m8 pull-m4">
+                <div class="card hoverable">
+                    <div class="card-content" id="account">
+                        {% partial 'pages-training/certificates_list' %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    {% else %}
-        <div class="card-panel teal">
-              <span class="white-text center">你还未登录，请先登录
-              </span>
-        </div>
-        {% partial "pages-auth/login-form" %}
     {% endif %}
 
 </div>

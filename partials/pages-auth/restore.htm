@@ -3,6 +3,7 @@
             填写注册时提交的Email地址，将发送一封电子邮件到你的邮箱。登录你的邮箱，按照邮件内容提示找回密码！
         </span>
 </div>
+{% include 'pages-all/message' %}
 <form
         data-request="resetPassword:onRestorePassword"
         data-request-update="'pages-auth/reset': '#partialUserResetForm'">

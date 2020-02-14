@@ -9,7 +9,7 @@ description = "培训记录"
     </a>
     证书 {{ certificateModel.id_num }}({{ certificateModel.category.name }})的培训记录</span>
 
-{% if records %}
+{% if records.count %}
 <p>以下是该证书的培训记录！</p>
 {% endif %}
 <table class="bordered responsive-table">
@@ -27,17 +27,17 @@ description = "培训记录"
     </thead>
     <tbody>
     {% if records %}
-    {% for record in records %}
-    <tr>
-        <td>{{ loop.index }}</td>
-        <td>{{ record.project.training_begin_date }}至{{ record.project.training_end_date }}</td>
-        <td>{{ record.edu_type_text }}</td>
-        <td>{{ record.record_phone }}</td>
-        <td>{{ record.record_company }}</td>
-        <td>{{ record.status.name }}</td>
-        <td>理论：{{ record.theory_score }}，操作：{{ record.operate_score }}({{ record.is_eligible ? '通过':'未通过'}})</td>
-    </tr>
-    {% endfor %}
+        {% for record in records %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ record.project.training_begin_date }}至{{ record.project.training_end_date }}</td>
+            <td>{{ record.edu_type_text }}</td>
+            <td>{{ record.record_phone }}</td>
+            <td>{{ record.record_company }}</td>
+            <td>{{ record.status.name }}</td>
+            <td>理论：{{ record.theory_score }}，操作：{{ record.operate_score }}({{ record.is_eligible ? '通过':'未通过'}})</td>
+        </tr>
+        {% endfor %}
     {% else %}
     <tr>
         <td colspan="7">还没有培训记录！</td>

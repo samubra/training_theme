@@ -3,7 +3,7 @@ description = "证书列表"
 [viewBag]
 ==
 <span class="card-title">我的证书</span>
-{% if certificates %}
+{% if certificates.count %}
 <p>以下是你所培训过的证书！</p>
 {% endif %}
 <table class="bordered responsive-table">
@@ -20,7 +20,7 @@ description = "证书列表"
     </tr>
     </thead>
     <tbody>
-    {% if certificates.count() %}
+    {% if certificates.count %}
     {% for certificate in certificates %}
     <tr data-request-data="certificate_id: {{ certificate.id }},partial: 'pages-training/record_lists',select:'#account'">
         <td>{{ loop.index }}</td>
@@ -50,8 +50,7 @@ description = "证书列表"
                     data-request-data="partial:'pages-training/relate_certificate_modal',select:'#relate-certificate-modal'">
                 <a class="waves-effect waves-light btn modal-trigger" href="#relate-certificate-modal"
                    data-request="userCertificates::onLoadUserData"
-                   >
-                    关联证书</a>
+                   >关联证书</a>
             </div>
             {% endif %}
         </td>

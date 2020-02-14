@@ -1,29 +1,38 @@
 [viewBag]
-
 ==
-{% set userError = UserPage.getErrorMessage %}
-{% set userForm = UserPage.getOldFormData %}
-
-<form data-request="UserPage::onAjax" data-request-redirect="{{ 'account'|page }}" data-request-flash>
+{% include 'pages-all/message' %}
+<form data-request="account::onUpdate" data-request-redirect="{{ 'account'|page }}" data-request-flash data-request-files>
     <div class="row">
         <div class="input-field col s12">
-            <input type="text" id="field-name" name="name" value="{{ userModel.name }}" class="validate valid">
-            <label for="field-name" class="active">姓名</label>
+            <input type="text" id="accountName" name="name" value="{{ userModel.name }}" class="validate">
+            <label for="accountName" class="active">姓名</label>
         </div>
         <div class="input-field col s12">
-            <input type="text" id="field-phone" name="phone" value="{{ userModel.phone }}" class="validate">
-            <label for="field-phone" class="active">联系电话</label>
+            <input type="text" id="accountPhone" name="phone" value="{{ userModel.phone }}" class="validate">
+            <label for="accountPhone" class="active">联系电话</label>
         </div>
         <div class="input-field col s12">
-            <textarea id="field-introduction" class="materialize-textarea" name="property[introduction]">{{
-                userModel.property['introduction'] }}</textarea>
-            <label for="field-introduction" class="active">自我介绍</label>
+            <input type="text" id="accountCompany" name="phone" value="{{ userModel.company }}" class="validate">
+            <label for="accountCompany" class="active">工作单位</label>
         </div>
+        <div class="input-field col s12">
+            <textarea id="accountIntroduce" class="materialize-textarea" name="introduce">{{
+                userModel.introduce }}</textarea>
+            <label for="accountIntroduce" class="active">自我介绍</label>
+        </div>
+        <div class="col s12 file-field input-field">
+            <div class="btn">
+                <span>头像</span>
+                <input type="file" name="avatar">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" value="{{ userModel.avatar['path'] }}">
+            </div>
+        </div>
+
     </div>
-    <button class="btn waves-effect waves-light btn-large" type="submit" name="action" data-attach-loading>修改
+
+    <button class="btn waves-effect waves-light btn-large" type="submit" name="action" data-attach-loading>更新资料
         <i class="material-icons right">send</i>
     </button>
 </form>
-{% if userError.message is not empty %}
-<p>{{ userError.message }}</p>
-{% endif %}

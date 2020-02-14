@@ -3,11 +3,11 @@
 {% set user = account.user %}
 <div class="card hoverable">
     <div class="card-image waves-effect waves-block waves-light">
-        <img class="materialboxed" src="{{ obUser.avatar['path'] }}">
+        <img class="materialboxed" src="{{ user.avatar.getPath() }}">
     </div>
 
     <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">{{ user.name }}({{ user.username }})<i
+        <span class="card-title activator grey-text text-darken-4">{{ user.name }}({{ user.surname }})<i
                 class="material-icons right">more_vert</i></span>
     </div>
     <div class="card-reveal">
@@ -16,10 +16,9 @@
         <p>{{ user.introduce|raw }}</p>
     </div>
     <div class="card-action">
-        <a class="waves-effect waves-light" data-request="session::onLogout">注销</a>
-        <a class="waves-effect waves-light" href="#" data-request="Logout::onAjax" >修改密码</a>
-        <a class="waves-effect waves-light" data-request-data="partial:'pages-auth/edit-user-form',select:'#account'"
-           data-request="userCertificates::onLoadUserData">修改资料</a>
+        <a class="waves-effect waves-light" data-request="session::onLogout ">注销</a>
+        <a class="waves-effect waves-light" data-request="userCertificates::onLoadUserDataForChangePass"  >修改密码</a>
+        <a class="waves-effect waves-light" data-request="userCertificates::onLoadUserData">修改资料</a>
     </div>
     <ul class="collection">
         <li class="collection-item">邮箱：{{ user.email }}</li>

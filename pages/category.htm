@@ -1,0 +1,41 @@
+title = "分类文章"
+url = "/blog/category/:slug/:page?"
+layout = "octaskin"
+is_hidden = 0
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = ":slug"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "category"
+postPage = "about"
+==
+<?php
+function onEnd()
+{
+    // Optional - set the page title to the category name
+    if ($this->category)
+        $this->page->title = $this->category->name;
+}
+?>
+==
+<div class="lt-parallax-header parallax-container" style="height: 120px;">
+    <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
+    <div class="lt-parallax-content">
+        <div class="center-align white-text" style="height: 110px;">
+                <h2 class="lt-title ">
+                    {% if not category %}
+                        <h2>Category not found</h2>
+                    {% else %}
+                        <h2>{{ category.name }}</h2>
+                    {% endif %}
+                </h2>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+{% component 'blogPosts' %}
+</div>

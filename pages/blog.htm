@@ -1,0 +1,25 @@
+title = "博客"
+url = "/blog/:page?"
+layout = "octaskin"
+is_hidden = 0
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "category"
+postPage = "post"
+==
+<div class="lt-parallax-header parallax-container" style="height: 120px;">
+    <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
+    <div class="lt-parallax-content">
+        <div class="center-align white-text" style="height: 110px;">
+                <h2 class="lt-title ">个人中心</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% component 'blogPosts' %}
+</div>

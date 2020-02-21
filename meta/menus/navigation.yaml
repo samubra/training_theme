@@ -1,18 +1,35 @@
 items:
     -
         title: Home
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: home
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 博客
+        type: cms-page
+        code: ''
+        reference: blog
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
     -
         title: 个人中心
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: account
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''

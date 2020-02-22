@@ -22,6 +22,7 @@ function onEnd()
 ?>
 ==
 {% set activePage = 'blog' %}
+
 {% partial "pages-all/parallax_header" title=post.title %}
 {% set post = blogPost.post %}
 <div class="row">
@@ -42,8 +43,10 @@ function onEnd()
 
             </div>
             <div class="col s12 l8 pull-l4">
+
                 <div class="card hoverable">
                     <div class="card-content">
+
                         <span class="flow-text">{{ post.content_html|raw }}</span>
                         {% if post.featured_images.count %}
                         <div class="featured-images text-center">
@@ -55,19 +58,19 @@ function onEnd()
                                 style="max-width: 100%" />
                             {% endfor %}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
-
-                {% endif %}
-                <p class="info">
-                    Posted
-                    {% if post.categories.count %} in
-                    {% for category in post.categories %}
-                    <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    on {{ post.published_at|date('M d, Y') }}
-                </p>
+                <div class="card">
+                    <div class="card-content">
+                        发布时间：{{ post.published_at|date('Y-m-d') }}
+                        {% if post.categories.count %} ，文章类别：
+                            {% for category in post.categories %}
+                            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
 
             </div>
 

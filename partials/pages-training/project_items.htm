@@ -1,0 +1,32 @@
+<div class="card hoverable">
+    <div class="card-content">
+        <span class="card-title">{{ project.title }}</span>
+        <a class="waves-effect waves-light btn-large red lighten-2"><i class="material-icons left">add</i>开始报名</a>
+    </div>
+    <div class="card-tabs">
+        <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a class="active" href="#document_{{ index }}">报名材料<span class="new badge red  lighten-2" data-badge-caption="重要"></span></a></li>
+            <li class="tab"><a href="#conditions_{{ index }}">申请条件</a></li>
+            <li class="tab"><a href="#details_{{ index }}">培训信息</a></li>
+            <li class="tab"><a href="#plan_{{ index }}">培训方案</a></li>
+        </ul>
+    </div>
+    <div class="card-content">
+        <div id="details_{{ index }}">
+            {% partial "pages-training/project_details" project=project %}
+        </div>
+        <div id="conditions_{{ index }}">
+            {% partial "pages-training/conditions" project=project %}
+        </div>
+        <div id="plan_{{ index }}">
+            {% partial "pages-training/plan_details" plan=project.plan %}
+        </div>
+        <div id="document_{{ index }}">
+            {% partial "pages-training/plan_document" document=project.plan.document %}
+        </div>
+    </div>
+    <div class="card-action">
+        <a href="#" class="red-text text-lighten-2">开始报名</a>
+        <a href="#"  class="red-text text-lighten-2">培训详情</a>
+    </div>
+</div>

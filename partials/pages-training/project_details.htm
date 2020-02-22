@@ -1,0 +1,9 @@
+<ul class="collection">
+    <li class="collection-item">培训时间: <span class="white-text teal lighten-2">{{ project.training_begin_date }} ~ {{ project.training_end_date }} </span></li>
+    <li class="collection-item">计划考试: <span class="white-text teal lighten-2">{{ project.plan_exam_date }} </span></li>
+    <li class="collection-item">报名人数: <span class="white-text teal lighten-2">{{ project.records.count }} 人已报名</span></li>
+    <li class="collection-item">培训类别: <span class="white-text teal lighten-2">{{ project.plan.category.name }} ({{ project.plan.is_retraining ? '复训':'新训' }})</span></li>
+    <li class="collection-item">培训状态: <span class="white-text teal lighten-2">{{ project.status.name }} </span></li>
+    <li class="collection-item">允许报名: <span class="white-text teal lighten-2">{{ project.active ? '是':'否' }} </span></li>
+    <li class="collection-item">计划收费: <span class="white-text teal lighten-2">{{ project.cost }} </span></li>
+</ul>

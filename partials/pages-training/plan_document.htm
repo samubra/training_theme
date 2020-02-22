@@ -1,0 +1,11 @@
+{% if document %}
+<ul class="collection  with-header">
+    <li class="collection-header"><h7>报名申请需提交以下材料</h7></li>
+    {% for item in document %}
+    <li class="collection-item">
+        {{ loop.index }}、{{ item['title'] }}:<span class="white-text teal lighten-2">{{ item['num'] }}份</span>，<span class="white-text teal lighten-2">{{ item['provide_type'] }}</span>，<span class="white-text teal lighten-2">{{ item['is_required']?'必须':'非必须' }}</span>
+    </li>
+    {% endfor %}
+
+</ul>
+{% endif %}

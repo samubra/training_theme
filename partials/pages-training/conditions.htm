@@ -1,0 +1,12 @@
+<ul class="collection with-header" id="other_info">
+    <li class="collection-header"><h7>必须满足以下全部条件，方可申请培训</h7></li>
+    {% for item in project.condition %}
+    <li class="collection-item">
+        {{ loop.index }}、发证日期：{{ str_limit(item['print_date_start'],10,'') }}至{{ str_limit(item['print_date_end'],10,'') }}<span class="white-text teal lighten-2">{{ item['is_valid']?'已复审':'未复审' }}</span>
+
+    </li>
+    {% if loop.last %}
+    <li class="collection-item">{{ loop.index +1 }}、操作项目：{{ project.plan.category.name }}</li>
+    {% endif %}
+    {% endfor %}
+</ul>

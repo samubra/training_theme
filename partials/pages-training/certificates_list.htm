@@ -39,10 +39,10 @@ description = "证书列表"
     {% endfor %}
     {% else %}
     <tr>
-        <td colspan="8" >还没有证书，先关联证书或者参加培训！{{ userModel.identity }}
+        <td colspan="8" >还没有证书，先关联证书或者参加培训！
             {% if userModel.identity %}
                 <a class="waves-effect waves-light btn modal-trigger"
-                   href=" {{ 'home'|page }}"
+                   href=" {{ 'blog'|page }}"
                 >
                     参加培训</a>
             {% else %}

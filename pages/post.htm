@@ -6,9 +6,13 @@ is_hidden = 0
 [blogPost]
 slug = "{{ :slug }}"
 categoryPage = "category"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "category"
 ==
 <?php
-
 function onEnd()
 {
     // Optional - set the page title to the post title
@@ -17,38 +21,57 @@ function onEnd()
 }
 ?>
 ==
-
+{% set activePage = 'blog' %}
 {% partial "pages-all/parallax_header" title=post.title %}
 {% set post = blogPost.post %}
 <div class="row">
     <div class="col l10 offset-l1">
     {% if post %}
+        <div class="row">
+            <div class="col s12 l4 push-l8">
+                {% if post.projects.count %}
+                    {% for project in post.projects %}
+                        {% partial "pages-training/project_items" project = project index=loop.index %}
+                    {% endfor %}
+                {% endif %}
+                    <div class="card hoverable">
+                        {% partial "pages-blog/sidenav"
+                        blogCategories = blogCategories
+                        %}
+                    </div>
 
+            </div>
+            <div class="col s12 l8 pull-l4">
+                <div class="card hoverable">
+                    <div class="card-content">
+                        <span class="flow-text">{{ post.content_html|raw }}</span>
+                        {% if post.featured_images.count %}
+                        <div class="featured-images text-center">
+                            {% for image in post.featured_images %}
+                            <img class="materialboxed"
+                                data-src="{{ image.filename }}"
+                                src="{{ image.path }}"
+                                alt="{{ image.description }}"
+                                style="max-width: 100%" />
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
 
-        <div class="content">{{ post.content_html|raw }}</div>
+                {% endif %}
+                <p class="info">
+                    Posted
+                    {% if post.categories.count %} in
+                    {% for category in post.categories %}
+                    <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    on {{ post.published_at|date('M d, Y') }}
+                </p>
 
-        {% if post.featured_images.count %}
-        <div class="featured-images text-center">
-                {% for image in post.featured_images %}
-                    <img
-                        data-src="{{ image.filename }}"
-                        src="{{ image.path }}"
-                        alt="{{ image.description }}"
-                style="max-width: 100%" />
-                {% endfor %}
+            </div>
+
         </div>
-        {% endif %}
-
-        <p class="info">
-            Posted
-            {% if post.categories.count %} in
-            {% for category in post.categories %}
-            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-            {% endfor %}
-            {% endif %}
-            on {{ post.published_at|date('M d, Y') }}
-        </p>
-
         {% endif %}
     </div>
 </div>

@@ -43,4 +43,12 @@ $(document).ready(function() {
     $('.materialboxed').materialbox();
     $('.modal').modal();
     $('.tabs').tabs();
+    $('.carousel').carousel();
+
+
+    $("ul.pagination li").addClass('waves-effect');
+    var activeText = $("ul.pagination li.active").text();
+    $("ul.pagination li.active").html("<a>"+activeText+"</a>");
+    $('#lt-navigation nav').removeClass('lt-no-background');
+
 });

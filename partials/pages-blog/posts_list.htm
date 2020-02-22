@@ -1,0 +1,57 @@
+{% set posts = blogPosts.posts %}
+<ul class="collection hoverable">
+    {% for post in posts if post.pinned %}
+    <li class="collection-item">
+        <div><span class="new badge red" data-badge-caption="置顶"><i class='tiny material-icons'>pin_drop</i></span>
+            <a href="{{ post.url }}" title="查看详情">{{ post.title }}</a>
+            <a href="{{ post.url }}" class="secondary-content" ><i class="material-icons">send</i></a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% for post in posts if not post.pinned %}
+<div class="card hoverable">
+    {% if post.featured_images[0] %}
+    <div class="card-image">
+        <img class="materialboxed" src="{{ post.featured_images[0].getPath() }}">
+
+        <a href="{{ post.url }}" class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">more</i></a>
+    </div>
+    {% endif %}
+    <div class="card-content">
+        <span class="card-title">{{ post.title }}</span>
+        <p class="excerpt">{{ post.summary|raw }}</p>
+    </div>
+    <div class="card-action">
+        <a href="{{ post.url }}">阅读全部</a>
+        发表日期：{{ post.published_at|date('Y-m-d') }}
+        {% if post.categories.count %} | 类别：
+        {% for category in post.categories %}
+        <a href="{{ category.url }}">{{ category.name }}</a>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+{% endfor %}
+{% if posts.lastPage > 1 %}
+<ul class="pagination">
+    {% if posts.currentPage > 1 %}
+    <li class="waves-effect"><a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): (posts.currentPage-1) }) }}"><i class="material-icons">chevron_left</i></a></li>
+    {% else %}
+    <li class="disabled"><a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): (posts.currentPage-1) }) }}"><i class="material-icons">chevron_left</i></a></li>
+    {% endif %}
+
+    {% for page in 1..posts.lastPage %}
+    <li class="{{ posts.currentPage == page ? 'active' : 'waves-effect' }}">
+        <a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): page }) }}">{{ page }}</a>
+    </li>
+    {% endfor %}
+
+    {% if posts.lastPage > posts.currentPage %}
+    <li class="waves-effect"><a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): (posts.currentPage+1) }) }}"><i class="material-icons">chevron_right</i></a></li>
+    {% else %}
+    <li class="disabled"><a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): (posts.currentPage+1) }) }}"><i class="material-icons">chevron_right</i></a></li>
+    {% endif %}
+</ul>
+{% endif %}

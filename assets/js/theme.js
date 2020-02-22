@@ -44,7 +44,10 @@ $(document).ready(function() {
     $('.modal').modal();
     $('.tabs').tabs();
     $('.carousel').carousel();
-
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+    });
 
     $("ul.pagination li").addClass('waves-effect');
     var activeText = $("ul.pagination li.active").text();

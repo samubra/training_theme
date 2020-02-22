@@ -4,16 +4,20 @@
     <div class="col l6 offset-l3">
         <div class="card hoverable">
             <div class="card-content" >
+                <div class="card-panel teal">
+                    <span class="center-align white-text">
+                        请按照要求认真填写！
+                    </span>
+                </div>
                 {% include 'pages-all/message' %}
-                <form data-request="onRegister" data-request-validate
-                      data-request-update="pages-auth/register_result:#register">
+                {{ form_ajax('onRegister', { update: { 'pages-auth/register_result': '#register' } }) }}
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">email</i>
                         <input id="registerEmail" type="email" name="email"
                                class="validate">
-                        <label for="registerEmail" >电子邮件地址</label>
-                        <span class="helper-text invalid" data-error="wrong" data-success="right"
+                        <label for="registerEmail" >电子邮件地址(用于找回密码)</label>
+                        <span class="helper-text invalid" data-error="格式错误" data-success="格式正确"
                               data-validate-for="email">电子邮件地址格式不正确</span>
                     </div>
                     {% if loginAttribute == "username" %}
@@ -36,13 +40,13 @@
                     <div class="input-field col s12">
                         <i class="material-icons prefix">vpn_key</i>
                         <input id="registerPassword" name="password" type="password" class="validate">
-                        <label for="registerPassword">密码</label>
+                        <label for="registerPassword">密码(至少8位）</label>
                         <span class="helper-text invalid" data-validate-for="password"></span>
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix">vpn_key</i>
                         <input id="field-password-confirmation" type="password" value="" name="password_confirmation" class="validate">
-                        <label for="field-password-confirmation" >再次输入密码</label>
+                        <label for="field-password-confirmation" >再次输入密码(至少8位）</label>
                     </div>
                 </div>
                 <div class="card-action">
@@ -51,7 +55,6 @@
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
-
             {{ form_close() }}
             </div>
         </div>

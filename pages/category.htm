@@ -26,84 +26,22 @@ function onEnd()
 }
 ?>
 ==
-<div class="lt-parallax-header parallax-container" style="height: 120px;">
-    <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
-    <div class="lt-parallax-content">
-        <div class="center-align white-text" style="height: 110px;">
-                <h2 class="lt-title ">
-                    {% if category %}
-                        <h2>{{ category.name }}</h2>
-                    {% else %}
-                        <h2>Category not found</h2>
-                    {% endif %}
-                </h2>
-        </div>
-    </div>
-</div>
+
+{% partial "pages-all/parallax_header" title = category.name %}
 
 <div class="row">
     <div class="col l10 offset-l1">
         <div class="row">
             <div class="col s12 m8">
-                {% for post in posts %}
-                <div class="card">
-                    {% if post.featured_images[0] %}
-                    <div class="card-image">
-                        <img class="materialboxed" src="{{ post.featured_images[0].path }}">
-
-                        <a href="{{ post.url }}" class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">more</i></a>
-                    </div>
-                    {% endif %}
-                    <div class="card-content">
-                        <span class="card-title">{{ post.title }}</span>
-                        <p class="excerpt">{{ post.summary|raw }}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="{{ post.url }}">阅读全部</a>
-                        发表日期：{{ post.published_at|date('Y-m-d') }}
-                        {% if post.categories.count %} | 类别：
-                        {% for category in post.categories %}
-                        <a href="{{ category.url }}">{{ category.name }}</a>
-                        {% endfor %}
-                        {% endif %}
-
-                    </div>
-                </div>
-                {% endfor %}
-                {% if posts.lastPage > 1 %}
-                <ul class="pagination">
-                    {% if posts.currentPage > 1 %}
-                    <li class="waves-effect"><a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): (posts.currentPage-1) }) }}"><i class="material-icons">chevron_left</i></a></li>
-                    {% else %}
-                    <li class="disabled"><a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): (posts.currentPage-1) }) }}"><i class="material-icons">chevron_left</i></a></li>
-                    {% endif %}
-
-                    {% for page in 1..posts.lastPage %}
-                    <li class="{{ posts.currentPage == page ? 'active' : 'waves-effect' }}">
-                        <a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): page }) }}">{{ page }}</a>
-                    </li>
-                    {% endfor %}
-
-                    {% if posts.lastPage > posts.currentPage %}
-                    <li class="waves-effect"><a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): (posts.currentPage+1) }) }}"><i class="material-icons">chevron_right</i></a></li>
-                    {% else %}
-                    <li class="disabled"><a href="{{ this.page.baseFileName|page({ (blogPosts.pageParam): (posts.currentPage+1) }) }}"><i class="material-icons">chevron_right</i></a></li>
-                    {% endif %}
-                </ul>
-                {% endif %}
+                {% partial "pages-blog/posts_list"
+                blogPosts = blogPosts
+                %}
             </div>
             <div class="col s12 m4">
                 <div class="card">
-                    <div class="card-tabs">
-                        <div class="collection">
-                            {% if blogCategories.categories %}
-                            {% partial "pages-blog/items"
-                            categories = blogCategories.categories
-                            currentCategorySlug = blogCategories.currentCategorySlug
-                            %}
-                            {% endif %}
-                        </div>
-                    </div>
+                        {% partial "pages-blog/sidenav"
+                        blogCategories = blogCategories
+                        %}
                 </div>
             </div>
         </div>

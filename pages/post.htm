@@ -17,25 +17,38 @@ function onEnd()
 }
 ?>
 ==
-<div class="lt-parallax-header parallax-container" style="height: 120px;">
-    <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
-    <div class="lt-parallax-content">
-        <div class="center-align white-text" style="height: 110px;">
-                <h2 class="lt-title ">
-                    {% if post %}
-                        <h2>{{ post.title }}</h2>
-                    {% else %}
-                        <h2>Post not found</h2>
-                    {% endif %}
-                </h2>
-        </div>
-    </div>
-</div>
 
+{% partial "pages-all/parallax_header" title=post.title %}
+{% set post = blogPost.post %}
 <div class="row">
     <div class="col l10 offset-l1">
     {% if post %}
-        {% component 'blogPost' %}
-    {% endif %}
+
+
+        <div class="content">{{ post.content_html|raw }}</div>
+
+        {% if post.featured_images.count %}
+        <div class="featured-images text-center">
+                {% for image in post.featured_images %}
+                    <img
+                        data-src="{{ image.filename }}"
+                        src="{{ image.path }}"
+                        alt="{{ image.description }}"
+                style="max-width: 100%" />
+                {% endfor %}
+        </div>
+        {% endif %}
+
+        <p class="info">
+            Posted
+            {% if post.categories.count %} in
+            {% for category in post.categories %}
+            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+            {% endif %}
+            on {{ post.published_at|date('M d, Y') }}
+        </p>
+
+        {% endif %}
     </div>
 </div>

@@ -1,0 +1,9 @@
+<ul class="collection with-header">
+    <li class="collection-header"><h5>文章类别</h5></li>
+    {% if blogCategories.categories %}
+    {% partial "pages-blog/category_items"
+    categories = blogCategories.categories
+    currentCategorySlug = blogCategories.currentCategorySlug
+    %}
+    {% endif %}
+</ul>

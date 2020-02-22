@@ -1,0 +1,38 @@
+title = "登录"
+url = "/auth"
+layout = "octaskin"
+is_hidden = 0
+
+[account]
+redirect = 'account'
+paramCode = "code"
+forceSecure = 0
+
+[session]
+security = "guest"
+redirect = "account"
+==
+{% partial "pages-all/parallax_header" title = '用户登录/注册' %}
+<div class="container">
+    {% if not user %}
+        <div class="row">
+            <div class="col l6 offset-l3">
+                <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#login">登入系统</a></li>
+                    {% if canRegister %}
+                    <li class="tab col s3"><a href="#register">注册用户</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div id="login" class="col s12">
+                {% partial "pages-auth/login-form" %}
+            </div>
+            {% if canRegister %}
+            <div id="register" class="col s12">
+                {% partial "pages-auth/register-form" %}
+            </div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</div>

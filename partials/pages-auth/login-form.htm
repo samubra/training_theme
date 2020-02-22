@@ -4,14 +4,19 @@
     <div class="col l6 offset-l3">
         <div class="card hoverable">
             <div class="card-content" >
+                <div class="card-panel teal">
+                    <span class="center-align white-text">
+                        <i>用户名</i> 或 <i>身份证号码</i> 均可登录！
+                    </span>
+                </div>
                 {% include 'pages-all/message' %}
-                <form data-request="onSignin" data-request-validate>
+                {{ form_ajax('onSignin') }}
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
                         <input id="userSigninLogin" type="text" name="login"
                                class="validate">
-                        <label for="userSigninLogin" >{{ loginAttributeLabel|lower }}</label>
+                        <label for="userSigninLogin" >用户名</label>
                         <span class="helper-text invalid" data-validate-for="login"></span>
                     </div>
                     <div class="input-field col s12">
@@ -34,7 +39,7 @@
                     <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">登录
                         <i class="material-icons right">send</i>
                     </button>
-                    <a href="#" class="waves-effect waves-light">忘记密码</a>
+                    <a href="{{ 'forget_password'|page }}" class="waves-effect waves-light">忘记密码</a>
                 </div>
 
             {{ form_close() }}

@@ -6,44 +6,17 @@ is_hidden = 0
 [account]
 paramCode = "code"
 forceSecure = 0
+redirect = "auth"
 
 [session]
 security = "user"
-redirect = "login"
+redirect = "auth"
 
 [userCertificates]
 ==
-<div class="lt-parallax-header parallax-container" style="height: 120px;">
-    <div class="lt-parallax parallax"><img src="{{ 'assets/img/pages/portfolio/header/img-01.jpg'|theme }}" alt="image"></div>
-    <div class="lt-parallax-content">
-        <div class="center-align white-text" style="height: 110px;">
-                <h2 class="lt-title ">个人中心</h2>
-        </div>
-    </div>
-</div>
-
+{% partial "pages-all/parallax_header" title = '用户中心' %}
 <div class="row">
     <div class="ol l10 offset-l1">
-    {% if not user %}
-            <div class="row">
-                <div class="col l6 offset-l3">
-                    <ul class="tabs">
-                        <li class="tab col s3"><a class="active" href="#login">登入系统</a></li>
-                        {% if canRegister %}
-                            <li class="tab col s3"><a href="#register">注册用户</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <div id="login" class="col s12">
-                    {% partial "pages-auth/login-form" %}
-                </div>
-                {% if canRegister %}
-                    <div id="register" class="col s12">
-                        {% partial "pages-auth/register-form" %}
-                    </div>
-                {% endif %}
-            </div>
-    {% else %}
         <div class="row">
             <div class="col m4 push-m8">
                 {% partial 'pages-auth/user-data' %}
@@ -56,6 +29,5 @@ redirect = "login"
                 </div>
             </div>
         </div>
-    {% endif %}
     </div>
 </div>

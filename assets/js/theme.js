@@ -48,6 +48,10 @@ $(document).ready(function() {
         fullWidth: true,
         indicators: true
     });
+    $('.collapsible').collapsible();
+    $('.collapsible.expandable').collapsible({
+        accordion: false
+    });
 
     $("ul.pagination li").addClass('waves-effect');
     var activeText = $("ul.pagination li.active").text();

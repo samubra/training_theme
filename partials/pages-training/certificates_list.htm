@@ -39,18 +39,20 @@ description = "证书列表"
     {% endfor %}
     {% else %}
     <tr>
-        <td colspan="8" >还没有证书，先关联证书或者参加培训！
+        <td colspan="8" >请先关联证书或者参加培训！
             {% if userModel.identity %}
+            <div>
                 <a class="waves-effect waves-light btn modal-trigger"
                    href=" {{ 'blog'|page }}"
                 >
-                    参加培训</a>
+                    去参加培训</a>
+            </div>
             {% else %}
             <div
                     data-request-data="partial:'pages-training/relate_certificate_modal',select:'#relate-certificate-modal'">
                 <a class="waves-effect waves-light btn modal-trigger" href="#relate-certificate-modal"
                    data-request="userCertificates::onLoadUserData"
-                   >关联证书</a>
+                   >去关联证书</a>
             </div>
             {% endif %}
         </td>

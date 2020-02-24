@@ -1,0 +1,15 @@
+<!-- Modal Structure -->
+<div id="retraining" class="modal  modal-fixed-footer">
+    <div class="modal-content">
+        {% flash %}
+        <div class="card-panel teal lighten-2 white-text {{ type }}">{{ message }}</div>
+        {% endflash %}
+        <div id="retraining_form">
+            <h4>输入你的证件号码</h4>
+            {% partial 'pages-training/retraining_record_form' project=project check_password=check_password %}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="{{ previous }}" class="waves-effect waves-green btn-flat">取消</a>
+    </div>
+</div>

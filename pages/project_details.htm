@@ -18,7 +18,12 @@ slug = "{{ :slug }}"
                     <div class="card  hoverable">
                         <div class="card-content">
                             <span class="card-title">培训项目信息</span>
-                                {% if project.active %}<a class="waves-effect waves-light btn-large red lighten-2"><i class="material-icons left">add</i>开始报名</a>{% endif %}
+                                {% if project.active %}
+                                    <a
+                                        class="waves-effect waves-light btn-large red lighten-2"
+                                        href="{{ 'add_record'|page({'slug':project.slug}) }}"
+                                    ><i class="material-icons left">add</i>开始报名</a>
+                                {% endif %}
                                 {% partial "pages-training/project_details" project=project %}
                         </div>
                     </div>

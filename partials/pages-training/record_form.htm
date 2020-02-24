@@ -1,0 +1,76 @@
+{% if result %}
+{% set certificate=result['certificate'] %}
+{% set project=result['project'] %}
+{% set eduOptions=result['eduOptions'] %}
+{% endif %}
+<span class="card-title" >{{ project.title }}:添加培训申请</span>
+<form data-request="onAddRecord" data-request-validate data-request-data="project_id:'{{ project.id }}',certificate_id:'{{ certificate.id }}'">
+    <div class="row">
+        <div class="alert alert-danger" data-validate-error>
+            <div class="card-panel red lighten-2 white-text">
+                <p data-message></p>
+            </div>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">chrome_reader_mode</i>
+            <input id="recordIdentity" type="text" name="identity" value="{{ certificate ? certificate.id_num : ''}}"
+                   class="validate" {{ certificate ? "disabled" : ''}}>
+            <label for="recordIdentity" class="{{ certificate ? 'active' : ''}}" >证件号码<span class="red-text">*</span></label>
+            <span class="helper-text">请输入正确的证件号码，通常是身份证号码！</span>
+        </div>
+        {% if check_password %}
+        <div class="input-field col s12">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="userSigninPassword" name="password" type="password" class="validate">
+            <label for="userSigninPassword">密码</label>
+            <span class="helper-text">请输入用该证件号码注册的账户密码，通常是证件号码后八位！</span>
+        </div>
+        {% endif %}
+        <div class="input-field col s12">
+            <i class="material-icons prefix">assignment_ind</i>
+            <input type="text" class="validate" id="name" name="name" value="{{ certificate ? certificate.name : ''}}" {{ certificate ? "disabled" : ''}}>
+            <label for="name" class="{{ certificate ? 'active' : ''}}" >姓名 <span class="red-text">*</span></label>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">school</i>
+            <select id="edu_type" name="edu_type">
+                <option disabled {{ certificate ? '' : 'selected' }} >选择你的文化程度...</option>
+                {% for id,name in eduOptions %}
+                    <option value="{{ id }}" {{ certificate.edu_type==id ? "selected" : "" }}>{{ name }}</option>
+                {% endfor %}
+            </select>
+            <label for="edu_type">文化程度<span class="red-text">*</span></label>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">phone</i>
+            <label for="phone" class="col-lg-2 control-label">联系电话 <span class="red-text">*</span></label>
+            <input type="text" class="form-control validate" id="phone" name="phone" value="" >
+            <span data-validate-for="phone" class="red-text helper-text"></span>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">import_contacts</i>
+            <label for="address" class="col-lg-2 control-label">联系地址 <span class="red-text">*</span></label>
+            <input type="text" class="form-control validate" id="address" name="address"  value="">
+            <span data-validate-for="address" class="red-text helper-text"></span>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">store</i>
+            <input type="text" class="form-control validate" id="company" name="company"  value="">
+            <label for="company" class="col-lg-2 control-label">输入单位名称，无单位则填个体 <span class="red-text">*</span></label>
+            <span data-validate-for="company" class="red-text helper-text"></span>
+        </div>
+        {% if not project.plan.is_retraining %}
+        <div class="input-field col s12">
+            <label>
+                <input name="agree" type="checkbox" value="1">
+                <span> 我已阅读，并同意</span><a class="modal-trigger" href="#agree" title="查看《培训申请须知》">《培训申请须知》</a>
+            </label>
+        </div>
+        {% endif %}
+    </div>
+    <div class="card-action">
+        <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始报名
+            <i class="material-icons right">send</i>
+        </button>
+    </div>
+</form>

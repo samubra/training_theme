@@ -1,5 +1,7 @@
 [viewBag]
 ==
+
+{% set redirectUrl = url().previous() %}
 <div class="row">
     <div class="col l6 offset-l3">
         <div class="card hoverable">
@@ -10,7 +12,7 @@
                     </span>
                 </div>
                 {% include 'pages-all/message' %}
-                {{ form_ajax('onSignin') }}
+                {{ form_ajax('onSignin',{ data: { redirect: redirectUrl }}) }}
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>

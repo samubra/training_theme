@@ -53,6 +53,13 @@ $(document).ready(function() {
         accordion: false
     });
 
+
+    var $retraining_modal = $('#retraining');
+    $retraining_modal.modal({
+        dismissible: false
+    });
+    $retraining_modal.modal('open');
+
     $("ul.pagination li").addClass('waves-effect');
     var activeText = $("ul.pagination li.active").text();
     $("ul.pagination li.active").html("<a>"+activeText+"</a>");

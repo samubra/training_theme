@@ -1,0 +1,35 @@
+<form data-request="onLoadCertificatesList" data-request-validate data-request-data="slug:'{{ project.slug }}',update:'true',select:'#result',partial:'pages-training/add_record_result'">
+    <div class="row">
+        <div class="alert alert-danger" data-validate-error>
+            <div class="card-panel red lighten-2 white-text">
+                <p data-message></p>
+            </div>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">chrome_reader_mode</i>
+            <input id="recordIdentity" type="text" name="identity"
+                   class="validate">
+            <label for="recordIdentity" >证件号码</label>
+            <span class="helper-text">请输入正确的证件号码，通常是身份证号码！</span>
+        </div>
+        {% if check_password %}
+        <div class="input-field col s12 teal lighten-2">
+            <i class="material-icons prefix">vpn_key</i>
+            <input id="userSigninPassword" name="password" type="password" class="validate">
+            <label for="userSigninPassword">密码</label>
+            <span class="helper-text">请输入用该证件号码注册的账户密码，通常是证件号码后八位！</span>
+        </div>
+        {% endif %}
+        <div class="input-field col s12">
+            <label>
+                <input name="agree" type="checkbox" value="1">
+                <span> 我已阅读，并同意</span><a class="modal-trigger" href="#agree" title="查看《培训申请须知》">《培训申请须知》</a>
+            </label>
+        </div>
+    </div>
+    <div class="card-action">
+        <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始报名
+            <i class="material-icons right">send</i>
+        </button>
+    </div>
+</form>

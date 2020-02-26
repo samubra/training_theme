@@ -1,0 +1,55 @@
+description = "地址列表"
+
+[viewBag]
+==
+<span class="card-title">我的收货地址</span>
+
+{% if addresses.count %}
+<p>以下是你的收货地址！
+    <a
+        href="#address_modal"
+        class="btn-floating red lighten-2 modal-trigger"
+        data-request="userAddresses::onLoadAddressForm"
+        data-request-success="$('#province_city_district').citypicker({province: '{{ address.province|default('重庆市') }}',city: '{{ address.city|default('重庆市') }}',district: '{{ address.district|default('巫溪县') }}'});"
+    >
+        <i class="material-icons">add</i> 添加新的收货地址
+    </a>
+</p>
+{% endif %}
+
+<table class="bordered responsive-table">
+    <thead>
+    <tr>
+        <th data-field="contact_name ">收货人</th>
+        <th data-field="full_address ">地址</th>
+        <th data-field="zip ">邮编</th>
+        <th data-field="contact_phone">电话</th>
+        <th data-field="actions">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if addresses.count %}
+    {% for address in addresses %}
+    <tr data-request-data="address_id: {{ address.id }}">
+        <td>{{ address.contact_name }}</td>
+        <td>{{ address.full_address }}</td>
+        <td>{{ address.zip }}</td>
+        <td>{{ address.contact_phone }}</td>
+        <td>
+            <a class="btn-floating red lighten-2 modal-trigger" data-request="userAddresses::onLoadAddressForm" data-request-success="$('#province_city_district').citypicker({province: '{{ address.province }}',city: '{{ address.city }}',district: '{{ address.district }}'});" href="#address_modal" >
+                <i class="material-icons">edit</i>
+            </a>
+            <a class="btn-floating red lighten-2" data-request-confirm="你确定要删除该收货地址: {{ address.full_address }}  ?" data-request-redirect="{{ 'user_addresses'|page }}" data-request="userAddresses::onLoadDeleteAddress" >
+                <i class="material-icons">clear</i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan="8" >还没有可用的收货地址，请添加！
+        </td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>

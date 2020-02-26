@@ -59,7 +59,7 @@ $(document).ready(function() {
         dismissible: false
     });
     $retraining_modal.modal('open');
-
+    $('#address_modal').modal();
     $("ul.pagination li").addClass('waves-effect');
     var activeText = $("ul.pagination li.active").text();
     $("ul.pagination li.active").html("<a>"+activeText+"</a>");

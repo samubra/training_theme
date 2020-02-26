@@ -1,0 +1,52 @@
+{% if responseData %}
+{% set address=responseData.address %}
+{% set action=responseData.action %}
+{% endif %}
+<div class="modal-content">
+        <h4 class="center-align">{{ action }}收货地址</h4>
+        <form data-request="userAddresses::onSaveAddress" data-request-validate data-request-data="address_id:'{{ address.id|default(null) }}'" data-request-redirect="{{ 'user_addresses'|page }}">
+        <div class="row">
+            <div class="alert alert-danger" data-validate-error>
+                <div class="card-panel red lighten-2 white-text">
+                    <p data-message></p>
+                </div>
+            </div>
+            <div class="input-field col s12" >
+                <i class="material-icons prefix">book</i>
+                <input type="text" name="province_city_district" data-toggle="city-picker" value="" placeholder="点击从下拉面板中选择省/市/区" class="" id="province_city_district" style="width: 300px;">
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">local_airport</i>
+                <label for="address" class="col-lg-2 control-label {{ address.address ? 'active':'' }}">详细地址 <span class="red-text">*</span></label>
+                <input type="text" class="form-control validate" id="address" name="address" value="{{ address.address }}" >
+                <span data-validate-for="address" class="red-text helper-text"></span>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">mail_outline</i>
+                <label for="zip" class="col-lg-2 control-label {{ address.zip ? 'active':'' }}"> 邮政编码<span class="red-text">*</span></label>
+                <input type="text" class="form-control validate" id="zip" name="zip" value="{{ address.zip }}" >
+                <span data-validate-for="zip" class="red-text helper-text"></span>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_box</i>
+                <label for="contact_name" class="col-lg-2 control-label {{ address.contact_name ? 'active':'' }}">联系人 <span class="red-text">*</span></label>
+                <input type="text" class="form-control validate" id="contact_name" name="contact_name" value="{{ address.contact_name }}" >
+                <span data-validate-for="contact_name" class="red-text helper-text"></span>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">phone</i>
+                <label for="contact_phone" class="col-lg-2 control-label {{ address.contact_phone ? 'active':'' }}">联系电话<span class="red-text">*</span></label>
+                <input type="text" class="form-control validate" id="contact_phone" name="contact_phone" value="{{ address.contact_phone }}" >
+                <span data-validate-for="contact_phone" class="red-text helper-text"></span>
+            </div>
+        </div>
+        <div class="card-action">
+            <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">
+                <i class="material-icons left">save</i>保存收货地址
+            </button>
+            <a  class="modal-close waves-effect waves-green btn-flat">取消</a>
+        </div>
+    </form>
+</div>
+
+

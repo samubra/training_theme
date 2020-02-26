@@ -1,0 +1,44 @@
+[viewBag]
+==
+<div class="row">
+    <div class="col s12">
+        <span class="card-title">
+            <a class="waves-effect waves-light btn-small" data-request-data="partial:'pages-training/certificates_list',select:'#account'"  data-request="userCertificates::onLoadCertificates" >
+                <i class="material-icons">arrow_back</i>
+            </a>你已申请的报名
+            </span>
+
+        <table class="bordered responsive-table">
+            <thead>
+            <tr>
+                <th data-field="date">名称</th>
+                <th data-field="date">单价</th>
+                <th data-field="date">数量</th>
+                <th data-field="date">操作</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% if carts %}
+            {% for cart in carts %}
+            <tr>
+                <td>{{ cart.name }}</td>
+                <td>￥{{ cart.price }}</td>
+                <td>{{ cart.qty }}</td>
+                <td><i class="material-icons">clear</i></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="" class="right-align">合计：</td>
+                <td colspan="3" class="left-align">￥{{ total }}元</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">还没有培训记录！</td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        {{ carts.subtotal() }}
+    </div>
+</div>

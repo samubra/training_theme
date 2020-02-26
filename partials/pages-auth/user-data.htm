@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">{{ user.name }}({{ user.username }})<i
+        <span class="card-title activator grey-text text-darken-4">{{ user.name }}<i
                 class="material-icons right">more_vert</i></span>
     </div>
     <div class="card-reveal">
@@ -20,6 +20,7 @@
         <a class="waves-effect waves-light" data-request="userCertificates::onLoadUserDataForChangePass"  >修改密码</a>
         <a class="waves-effect waves-light" data-request="userCertificates::onLoadUserData">修改资料</a>
         <a class="waves-effect waves-light" href="{{ 'user_addresses'|page }}">收货地址</a>
+        <a class="waves-effect waves-light modal-trigger" href="#cart">购物车</a>
     </div>
     <ul class="collection">
         <li class="collection-item">邮箱：{{ user.email }}</li>
@@ -31,3 +32,4 @@
         <li class="collection-item">最后更新：{{ user.updated_at }}</li>
     </ul>
 </div>
+

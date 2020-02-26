@@ -2,63 +2,67 @@ description = "证书列表"
 
 [viewBag]
 ==
-<span class="card-title">我的证书</span>
-{% if certificates.count %}
-<p>以下是你所培训过的证书！</p>
-{% endif %}
-<table class="bordered responsive-table">
-    <thead>
-    <tr>
-        <th data-field="number">序号</th>
-        <th data-field="id">姓名</th>
-        <th data-field="name">培训类别</th>
-        <th data-field="pri nt_date">发证日期</th>
-        <th data-field="review_date">应复审日期</th>
-        <th data-field="invalid_date">失效日期</th>
-        <th data-field="active ">有效</th>
-        <th data-field="history ">记录</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% if certificates.count %}
-    {% for certificate in certificates %}
-    <tr data-request-data="certificate_id: {{ certificate.id }},partial: 'pages-training/record_lists',select:'#account'">
-        <td>{{ loop.index }}</td>
-        <td>{{ certificate.name }}</td>
-        <td>{{ certificate.category.name }}</td>
-        <td>{{ certificate.print_date }}</td>
-        <td>{{ certificate.review_date }}</td>
-        <td>{{ certificate.invalid_date }}</td>
-        <td>{{ certificate.active ? "<i class='material-icons'>check</i>":"<i class='material-icons'>close</i>" }}</td>
-        <td>
-            <a class="btn-floating" data-request="userCertificates::onLoadRecords" >
-                <i class="material-icons">equalizer</i>
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
-    {% else %}
-    <tr>
-        <td colspan="8" >请先关联证书或者参加培训！
-            {% if userModel.identity %}
-            <div>
-                <a class="waves-effect waves-light btn modal-trigger"
-                   href=" {{ 'blog'|page }}"
-                >
-                    去参加培训</a>
-            </div>
+<div class="row">
+    <div class="col s12">
+        <span class="card-title">我的证书</span>
+        {% if certificates.count %}
+        <p>以下是你所培训过的证书！</p>
+        {% endif %}
+        <table class="bordered responsive-table striped">
+            <thead>
+            <tr>
+                <th data-field="number">序号</th>
+                <th data-field="id">姓名</th>
+                <th data-field="name">培训类别</th>
+                <th data-field="pri nt_date">发证日期</th>
+                <th data-field="review_date">应复审日期</th>
+                <th data-field="invalid_date">失效日期</th>
+                <th data-field="active ">有效</th>
+                <th data-field="history ">记录</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if certificates.count %}
+            {% for certificate in certificates %}
+            <tr data-request-data="certificate_id: {{ certificate.id }},partial: 'pages-training/record_lists',select:'#account'">
+                <td>{{ loop.index }}</td>
+                <td>{{ certificate.name }}</td>
+                <td>{{ certificate.category.name }}</td>
+                <td>{{ certificate.print_date }}</td>
+                <td>{{ certificate.review_date }}</td>
+                <td>{{ certificate.invalid_date }}</td>
+                <td>{{ certificate.active ? "<i class='material-icons'>check</i>":"<i class='material-icons'>close</i>" }}</td>
+                <td>
+                    <a class="btn-floating" data-request="userCertificates::onLoadRecords" >
+                        <i class="material-icons">equalizer</i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
             {% else %}
-            <div
-                    data-request-data="partial:'pages-training/relate_certificate_modal',select:'#relate-certificate-modal'">
-                <a class="waves-effect waves-light btn modal-trigger" href="#relate-certificate-modal"
-                   data-request="userCertificates::onLoadUserData"
-                   >去关联证书</a>
-            </div>
+            <tr>
+                <td colspan="8" >请先关联证书或者参加培训！
+                    {% if userModel.identity %}
+                    <div>
+                        <a class="waves-effect waves-light btn modal-trigger"
+                           href=" {{ 'blog'|page }}"
+                        >
+                            去参加培训</a>
+                    </div>
+                    {% else %}
+                    <div
+                            data-request-data="partial:'pages-training/relate_certificate_modal',select:'#relate-certificate-modal'">
+                        <a class="waves-effect waves-light btn modal-trigger" href="#relate-certificate-modal"
+                           data-request="userCertificates::onLoadUserData"
+                           >去关联证书</a>
+                    </div>
+                    {% endif %}
+                </td>
+            </tr>
             {% endif %}
-        </td>
-    </tr>
-    {% endif %}
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
 <!-- Modal Structure -->
 <div id="relate-certificate-modal" class="modal "></div>

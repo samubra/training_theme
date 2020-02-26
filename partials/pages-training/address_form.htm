@@ -2,9 +2,10 @@
 {% set address=responseData.address %}
 {% set action=responseData.action %}
 {% endif %}
+<form data-request="userAddresses::onSaveAddress" data-request-validate data-request-data="address_id:'{{ address.id|default(null) }}'" data-request-redirect="{{ 'user_addresses'|page }}">
+
 <div class="modal-content">
         <h4 class="center-align">{{ action }}收货地址</h4>
-        <form data-request="userAddresses::onSaveAddress" data-request-validate data-request-data="address_id:'{{ address.id|default(null) }}'" data-request-redirect="{{ 'user_addresses'|page }}">
         <div class="row">
             <div class="alert alert-danger" data-validate-error>
                 <div class="card-panel red lighten-2 white-text">
@@ -40,13 +41,13 @@
                 <span data-validate-for="contact_phone" class="red-text helper-text"></span>
             </div>
         </div>
-        <div class="card-action">
-            <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">
-                <i class="material-icons left">save</i>保存收货地址
-            </button>
-            <a  class="modal-close waves-effect waves-green btn-flat">取消</a>
-        </div>
-    </form>
 </div>
+    <div class="modal-footer">
+        <button data-attach-loading class="btn waves-effect waves-light btn" type="submit" name="action">
+            <i class="material-icons left">save</i>保存收货地址
+        </button>
+        <a  class="modal-close waves-effect waves-green btn-flat">取消</a>
+    </div>
+</form>
 
 

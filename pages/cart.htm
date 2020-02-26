@@ -1,5 +1,5 @@
-title = "收货地址列表"
-url = "/user/addresses"
+title = "购物车"
+url = "/user/carts"
 layout = "octaskin"
 is_hidden = 0
 
@@ -11,7 +11,8 @@ redirect = "auth"
 [session]
 security = "user"
 redirect = "auth"
-[userAddresses]
+
+[cart]
 ==
 <div class="row">
     <div class="col l10 offset-l1">
@@ -22,7 +23,7 @@ redirect = "auth"
                         {% flash %}
                         <div class="card-panel teal lighten-2 white-text {{ type }}">{{ message }}</div>
                         {% endflash %}
-                        {% partial 'pages-training/user_addresses_list' addresses=account.user.addresses %}
+                        {% partial 'pages-cart/list' carts=cartList %}
                     </div>
                 </div>
             </div>

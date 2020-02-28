@@ -1,0 +1,29 @@
+title = "首页"
+url = "/"
+layout = "front"
+is_hidden = 0
+==
+{% put header_image %}
+<img id="headerImage" src="{{ 'assets/images/material-03.jpg'|theme }}" style="margin-top: -439px; opacity: 1;">
+{% endput %}
+
+<div class="mc-layout" mc-layout-size="big" mc-layout="1">
+    <div class="mc-layout" mc-layout-size="biggest">
+        <div class="mc-card">
+            <div class="mc-header">
+                <h1 class="mc-title">欢迎进入培训管理系统！</h1>
+                <h2 class="mc-subtitle"></h2>
+            </div>
+            <div class="mc-content">
+                <p class="mc-text">我们</p>
+                <img src="{{ 'assets/images/material-09.jpg'|theme }}">
+                Navigation is an important part of your application. It allows the user to move between pages and see interesting content. Because of that, we have paid attention to this so our framework is completly responsive.So, let's start! Just add an element with the "mc-navigation" class to create the navigation container. This container will hide automatically on mobile enviroments, and you'll be able to open it by clicking the "menu" button, or swiping to de right.
+            </div>
+            <div class="mc-footer">
+                <a class="mc-button mc-button-icon mc-clickable" mc-action="share"></a>
+                <a class="mc-button mc-button-icon mc-clickable" mc-action="comment"></a>
+                <a class="mc-button mc-button-icon mc-clickable" mc-action="like"></a>
+            </div>
+        </div>
+    </div>
+</div>

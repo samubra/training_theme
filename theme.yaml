@@ -1,0 +1,6 @@
+name: material
+description: 'material css 主题'
+author: samubra
+homepage: 'http://tiikoo.cn'
+code: 'material-css-theme'
+form: config/fields.yaml

@@ -1,0 +1,18 @@
+<div class="mc-header-line">
+    <span class="mc-button mc-button-icon mc-clickable" mc-action="menu"></span>
+    <label class="mc-title">
+        {% placeholder top_title default %} 首页 {% endplaceholder %}
+    </label>
+    <div class="mc-right">
+        {% placeholder top_right%}
+    </div>
+</div>
+{% placeholder header_image %}
+{% if placeholder('tabs_bar') %}
+<div class="mc-tabs-bar mc-opened" style="min-width: 393px; left: 0px;">
+    {% placeholder tabs_bar %}
+</div>
+{% endif %}
+
+
+

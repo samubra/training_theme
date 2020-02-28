@@ -1,0 +1,42 @@
+tabs:
+  fields:
+    website_name:
+      tab: 网站设置
+      label: 网站名称
+      type: text
+      default: 培训管理系统
+
+    description:
+      tab: 网站设置
+      label: 网站描述
+      type: textarea
+      default: "Free Modern and Clean OctoberCMS Theme based on Materialize CSS."
+
+    theme_color:
+      tab: 网站设置
+      label: 主题配色
+      type: dropdown
+      default: default-theme
+      options:
+          default-theme: default
+          android-theme: android
+          facebook-theme: facebook
+          google-theme: google
+          imperdiblesoft-theme: imperdiblesoft
+          mypetcard-theme: mypetcard
+          spottify-theme: spottify
+          twitter-theme: twitter
+
+    custom_css:
+      tab: 高级扩展
+      label: 自定义 CSS
+      type: codeeditor
+      size: huge
+      language: css
+
+    custom_js:
+      tab: 高级扩展
+      label: 自定义 JS
+      type: codeeditor
+      size: huge
+      language: javascript

@@ -1,0 +1,84 @@
+description = "Default layout"
+==
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>培训管理系统 - {{ this.page.title }}</title>
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="author" content="samubra">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="samubra">
+
+
+
+
+    <link href="{{ 'assets/css/material-css.css'|theme }}" rel="stylesheet">
+    <link href="{{ 'assets/css/'|theme }}/{{ this.theme.theme_color }}.css" rel="stylesheet">
+    <link href="{{ 'assets/css/theme.css'|theme }}" type="text/css" rel="stylesheet">
+    {% styles %}
+
+    {% if this.theme.custom_css %}
+    <style>
+        {{ this.theme.custom_css }}
+    </style>
+    {% endif %}
+</head>
+<body >
+    <div class="mc-splash" style="display: none;">
+        <div class="mc-content">
+            <img src="{{ 'assets/images/material_logo.png'|theme }}">
+            <div class="mc-spinner mc-color-white mc-bg-orange"></div>
+        </div>
+    </div>
+    <nav class="mc-navigation">
+        {% partial 'site/navigation' %}
+    </nav>
+    <header class="mc-header">
+        {% partial 'site/header' %}
+
+    </header>
+    <div class="mc-content ng-scope">
+        {% page %}
+    </div>
+    <div class="mc-footer" >
+        {% partial 'site/footer' %}
+    </div>
+    <div class="mc-floating">
+        <a class="mc-button mc-button-icon mc-clickable mc-button-raised" mc-action="scroll-top" onclick="javascript:scrollUp()"></a>
+    </div>
+
+
+    {% if placeholder('floating_window') %}
+        <div class="mc-floating-window mc-hidden">
+            {% placeholder floating_window default %}
+            <div class="mc-window-header">
+                <h1 class="mc-title">Floating window</h1>
+                <h2 class="mc-note">floating-window-header</h2>
+            </div>
+            <div class="mc-window-content">
+                <p class="mc-text">This is an <b>mc-text</b> in the <b>mc-window-content</b></p>
+            </div>
+            <div class="mc-window-footer">
+                <p class="mc-note">This is an <b>mc-note</b> in the <b>mc-window-footer</b></p>
+            </div>
+            {% endplaceholder %}
+        </div>
+    {% endif %}
+
+<!-- Scripts -->
+    <script type="text/javascript" src="{{ 'assets/js/jquery.js'|theme }}"></script>
+
+    <script type="text/javascript" src="{{ 'assets/js/theme.js'|theme }}"></script>
+    {% framework extras %}
+    {% scripts %}
+
+    {% if this.theme.custom_js %}
+    <script>
+        {{ this.theme.custom_js|raw }}
+    </script>
+    {% endif %}
+    <script type="text/javascript" src="{{ 'assets/js/material-css.js'|theme }}"></script>
+</body>
+</html>

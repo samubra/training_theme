@@ -1,13 +1,13 @@
-title = "分类文章"
-url = "/blog/category/:slug/:page?"
+title = "培训动态分类"
+url = "/news/category/:slug/:page?"
 layout = "octaskin"
 is_hidden = 0
 
 [blogPosts]
 pageNumber = "{{ :page }}"
-categoryFilter = ":slug"
+categoryFilter = "{{ :slug }}"
 postsPerPage = 10
-noPostsMessage = "该类别还没有任何文章，请先发表一篇！"
+noPostsMessage = "该类别还没有任何培训动态，请先发表一篇！"
 sortOrder = "published_at desc"
 categoryPage = "category"
 postPage = "post"

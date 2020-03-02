@@ -13,6 +13,8 @@ security = "user"
 redirect = "auth"
 
 [cart]
+
+[userAddresses]
 ==
 <div class="row">
     <div class="col l10 offset-l1">
@@ -23,7 +25,7 @@ redirect = "auth"
                         {% flash %}
                         <div class="card-panel teal lighten-2 white-text {{ type }}">{{ message }}</div>
                         {% endflash %}
-                        {% partial 'pages-cart/list' carts=cartList %}
+                        {% partial 'pages-cart/list' carts=cartList addresses=addresses last_use=last_use_address %}
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@ redirect = "auth"
                         {% flash %}
                         <div class="card-panel teal lighten-2 white-text {{ type }}">{{ message }}</div>
                         {% endflash %}
-                        {% partial 'pages-training/user_addresses_list' addresses=account.user.addresses %}
+                        {% partial 'pages-training/user_addresses_list' addresses=addresses %}
                     </div>
                 </div>
             </div>

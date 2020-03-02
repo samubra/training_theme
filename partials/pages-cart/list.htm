@@ -2,11 +2,7 @@
 ==
 <div class="row">
     <div class="col s12">
-        <span class="card-title">
-            <a class="waves-effect waves-light btn-small" data-request-data="partial:'pages-training/certificates_list',select:'#account'"  data-request="userCertificates::onLoadCertificates" >
-                <i class="material-icons">arrow_back</i>
-            </a>你已申请的报名
-            </span>
+        <span class="card-title">你的购物车有 {{ carts.count() }} 个培训申请</span>
 
         <table class="bordered responsive-table">
             <thead>
@@ -20,8 +16,8 @@
             </thead>
             <tbody>
             {% if carts %}
-            {% for cart in carts %}
-            <tr>
+                {% for cart in carts %}
+            <tr data-request-data="row_id: {{ cat.rawId() }}">
                 <td>{{ cart.name }}</td>
                 <td>￥{{ cart.price }}</td>
                 <td>{{ cart.qty }}</td>
@@ -40,5 +36,24 @@
             </tbody>
         </table>
         {{ carts.subtotal() }}
+        <form data-request="cart::onAddToOrder" data-request-confirm="你确定要提交订单吗？">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">book</i>
+                    <select id="address" name="address_id">
+                        <option disabled >选择你收货地址...</option>
+                        {% for id,address in addresses %}
+                        <option value="{{ address.id }}" {{ last_use.id==address.id ? "selected" : "" }}>{{ address.full_address }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="address">收货地址<span class="red-text">*</span></label>
+                </div>
+            </div>
+            <div class="card-action">
+                <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">提交订单
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
     </div>
 </div>

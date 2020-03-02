@@ -37,11 +37,11 @@ description = "地址列表"
                 <td>{{ address.full_address }}</td>
                 <td>{{ address.zip }}</td>
                 <td>{{ address.contact_phone }}</td>
-                <>
+                <td>
                     <a class="btn-floating red lighten-2 modal-trigger" data-request="userAddresses::onLoadAddressForm" data-request-success="$('#province_city_district').citypicker({province: '{{ address.province }}',city: '{{ address.city }}',district: '{{ address.district }}'});" href="#address_modal" >
                         <i class="material-icons">edit</i>
                     </a>
-                    <a>
+                    <a class="btn-floating red lighten-2" data-request="userAddresses::onLoadDeleteAddress" >
                         <i class="material-icons">clear</i>
                     </a>
                 </td>

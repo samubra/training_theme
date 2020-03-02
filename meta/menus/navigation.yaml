@@ -1,22 +1,22 @@
 items:
     -
         title: 首页
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: home
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
     -
-        title: 博客
-        nesting: ''
+        title: 培训动态
         type: cms-page
-        url: ''
         code: ''
         reference: blog
-        cmsPage: ''
-        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -36,9 +36,13 @@ items:
             isExternal: '0'
     -
         title: 联系我们
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: contact
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''

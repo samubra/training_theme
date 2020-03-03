@@ -1,19 +1,10 @@
-title = "添加培训申请"
-url = "/project/record/:slug/add"
+title = "培训项目详情"
+url = "/project/record/:id/upload"
 layout = "octaskin"
 is_hidden = 0
 
-[addRecord]
-slug = "{{ :slug }}"
-check_auth = '1'
-[projectDetails]
-slug = "{{ :slug }}"
-==
-function onStart()
-{
-    $this['previous'] = url()->previous();
-    $this['eduOptions'] = \Samubra\Training\Models\Train::$eduTypeMap;
-}
+[addAttach]
+record_id = "{{ :id }}"
 ==
 <div class="row">
     <div class="col l10 offset-l1">
@@ -27,12 +18,11 @@ function onStart()
                     <div class="col s12 l12">
                         <div class="card  hoverable">
                             <div class="card-content" id="result">
-                                {% if project.plan.is_retraining %}
-                                    <div class="card-panel teal lighten-2 white-text">请先选择相应的证书再进行下一步操作！</div>
-                                    {% partial 'pages-training/load_certificates_modal' previous=previous %}
-                                {% else %}
-                                    {% partial 'pages-training/record_form' project=project %}
-                                {% endif %}
+                                    <div class="card-panel teal lighten-2 white-text">
+                                        提醒:上传的照片将被人工审核，照片和学历正面请保留原件，在到校参加培训时再交到培训老师手中。
+                                    </div>
+                                <span class="card-title" >{{ record.project.plan.is_retraining ? '第四步' : '第二步' }}：上传培训所需的照片</span>
+                                    {% partial 'pages-training/add_attach_form' record=record %}
                             </div>
                         </div>
                     </div>

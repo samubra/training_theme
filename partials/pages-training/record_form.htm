@@ -4,7 +4,8 @@
 {% set eduOptions=result['eduOptions'] %}
 {% endif %}
 <span class="card-title" >{{ project.title }}:添加培训申请</span>
-<form data-request="onAddRecord" data-request-validate data-request-data="project_id:'{{ project.id }}',certificate_id:'{{ certificate.id }}'">
+<span class="card-title" >{% if not result %}第一步：填写申请资料 {% else %}第三步：填写复审的申请信息{% endif %}</span>
+<form data-request="onAddRecord" data-request-validate data-request-data="project_id:'{{ project.id }}',certificate_id:'{{ certificate.id }}'" >
     <div class="row">
         <div class="alert alert-danger" data-validate-error>
             <div class="card-panel red lighten-2 white-text">

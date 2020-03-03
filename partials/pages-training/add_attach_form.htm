@@ -1,0 +1,95 @@
+<form data-request="onSaveAttach" data-request-data="record_id:'{{record.id}}'" data-request-files>
+
+    <div class="card-action">
+        {% if not (record.edu.count >1 and record.edu.count >1 and record.photo) %}
+        <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始上传
+            <i class="material-icons right">send</i>
+        </button>
+        {% else %}
+        <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >下一步：去支付！</a>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if not record.photo %}
+        <div class="col s12 file-field input-field">
+            <div class="btn">
+                <span>照片</span>
+                <input type="file" name="photo">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" value="请上传近期上半身免冠白底2寸照片！">
+            </div>
+        </div>
+        {% else %}
+        <div class="col m6">
+            <div class="card small">
+                <div class="card-image">
+                    <img src="{{ record.photo.getPath() }}" class="materialboxed" />
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">已上传照片</span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if record.id_card.count < 2 %}
+        <div class="col s12 file-field input-field">
+            <div class="btn">
+                <span>身份证正面照</span>
+                <input type="file" name="id_card">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" value="请上传身份证正面和背面的照片！">
+            </div>
+        </div>
+        {% endif %}
+        {% if record.id_card.count %}
+            {% for card_img in record.id_card %}
+            <div class="col m6">
+                <div class="card small">
+                    <div class="card-image">
+                        <img src="{{ card_img.getPath() }}" class="materialboxed" />
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">已上传身份证照片 #{{ loop.index }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% if record.edu.count < 2 %}
+        <div class="col s12 file-field input-field">
+            <div class="btn">
+                <span>学历证明</span>
+                <input type="file" name="edu">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" value="请上传初中及以上学历证书照片或原毕业学校或教育主管部门出具的“学历证明”照片！">
+            </div>
+        </div>
+        {% endif %}
+        {% if record.edu.count %}
+            {% for edu_img in record.edu %}
+            <div class="col m6">
+                <div class="card small">
+                    <div class="card-image">
+                        <img src="{{ edu_img.getPath() }}" class="materialboxed" />
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">已上传学历证明照片 #{{ loop.index }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="card-action">
+        {% if not (record.edu.count >1 and record.edu.count >1 and record.photo) %}
+        <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始上传
+            <i class="material-icons right">send</i>
+        </button>
+        {% else %}
+            <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >下一步：去支付！</a>
+        {% endif %}
+    </div>
+</form>

@@ -5,7 +5,8 @@
         <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始上传
             <i class="material-icons right">send</i>
         </button>
-        {% else %}
+        {% endif %}
+        {% if (record.edu.count and record.edu.count and record.photo) %}
         <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >下一步：去支付！</a>
         {% endif %}
     </div>
@@ -88,8 +89,9 @@
         <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始上传
             <i class="material-icons right">send</i>
         </button>
-        {% else %}
-            <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >下一步：去支付！</a>
+        {% endif %}
+        {% if (record.edu.count and record.edu.count and record.photo) %}
+        <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >下一步：去支付！</a>
         {% endif %}
     </div>
 </form>

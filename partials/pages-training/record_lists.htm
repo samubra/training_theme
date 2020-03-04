@@ -16,13 +16,13 @@ description = "培训记录"
         <table class="bordered responsive-table">
             <thead>
             <tr>
-                <th data-field="number">序号</th>
                 <th data-field="date">培训时间</th>
                 <th data-field="edu">文化程度</th>
                 <th data-field="phone">联系电话</th>
                 <th data-field="company">单位名称</th>
                 <th data-field="status">状态</th>
                 <th data-field="score">成绩</th>
+                <th data-field="number">上传图片</th>
 
             </tr>
             </thead>
@@ -30,13 +30,15 @@ description = "培训记录"
             {% if records %}
                 {% for record in records %}
                 <tr>
-                    <td>{{ loop.index }}</td>
                     <td>{{ record.project.training_begin_date }}至{{ record.project.training_end_date }}</td>
                     <td>{{ record.edu_type_text }}</td>
                     <td>{{ record.record_phone }}</td>
                     <td>{{ record.record_company }}</td>
                     <td>{{ record.status.name }}</td>
                     <td>理论：{{ record.theory_score }}，操作：{{ record.operate_score }}({{ record.is_eligible ? '通过':'未通过'}})</td>
+                    <td><a class="btn-floating" href="{{ 'add_attach'|page({id:record.id}) }}" >
+                        <i class="material-icons">file_upload</i>
+                    </a></td>
                 </tr>
                 {% endfor %}
             {% else %}

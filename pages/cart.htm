@@ -4,9 +4,9 @@ layout = "octaskin"
 is_hidden = 0
 
 [account]
+redirect = "auth"
 paramCode = "code"
 forceSecure = 0
-redirect = "auth"
 
 [session]
 security = "user"
@@ -25,7 +25,11 @@ redirect = "auth"
                         {% flash %}
                         <div class="card-panel teal lighten-2 white-text {{ type }}">{{ message }}</div>
                         {% endflash %}
+                        {% if cartList %}
                         {% partial 'pages-cart/list' carts=cartList addresses=addresses last_use=last_use_address %}
+                        {% else %}
+                        <div class="card-panel teal lighten-2 white-text">你的购物车为空，请先填写报名信息再提交订单！</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -38,4 +42,3 @@ redirect = "auth"
 <div id="address_modal" class="modal modal-fixed-footer">
     {% partial 'pages-training/address_form' %}
 </div>
-

@@ -25,7 +25,7 @@ redirect = "auth"
                         {% flash %}
                         <div class="card-panel teal lighten-2 white-text {{ type }}">{{ message }}</div>
                         {% endflash %}
-                        {% if cartList %}
+                        {% if countRows %}
                         {% partial 'pages-cart/list' carts=cartList addresses=addresses last_use=last_use_address %}
                         {% else %}
                         <div class="card-panel teal lighten-2 white-text">你的购物车为空，请先填写报名信息再提交订单！</div>

@@ -1,17 +1,17 @@
 <form data-request="onSaveAttach" data-request-data="record_id:'{{record.id}}'" data-request-files>
 
     <div class="card-action">
-        {% if not (record.edu.count >1 and record.edu.count >1 and record.photo) %}
+        {% if not (record.edu_images.count >1 and record.edu_images.count >1 and record.photo_image) %}
         <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始上传
             <i class="material-icons right">send</i>
         </button>
         {% endif %}
-        {% if (record.edu.count and record.edu.count and record.photo) %}
+        {% if (record.edu_images.count and record.edu_images.count and record.photo_image) %}
         <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >下一步：去支付！</a>
         {% endif %}
     </div>
     <div class="row">
-        {% if not record.photo %}
+        {% if not record.photo_image %}
         <div class="col s12 file-field input-field">
             <div class="btn">
                 <span>照片</span>
@@ -25,7 +25,7 @@
         <div class="col m6">
             <div class="card small">
                 <div class="card-image">
-                    <img src="{{ record.photo.getPath() }}" class="materialboxed" />
+                    <img src="{{ record.photo_image.getPath() }}" class="materialboxed" />
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">已上传照片</span>
@@ -33,7 +33,7 @@
             </div>
         </div>
         {% endif %}
-        {% if record.id_card.count < 2 %}
+        {% if record.id_card_images.count < 2 %}
         <div class="col s12 file-field input-field">
             <div class="btn">
                 <span>身份证正面照</span>
@@ -44,8 +44,8 @@
             </div>
         </div>
         {% endif %}
-        {% if record.id_card.count %}
-            {% for card_img in record.id_card %}
+        {% if record.id_card_images.count %}
+            {% for card_img in record.id_card_images %}
             <div class="col m6">
                 <div class="card small">
                     <div class="card-image">
@@ -58,7 +58,7 @@
             </div>
             {% endfor %}
         {% endif %}
-        {% if record.edu.count < 2 %}
+        {% if record.edu_images.count < 2 %}
         <div class="col s12 file-field input-field">
             <div class="btn">
                 <span>学历证明</span>
@@ -69,8 +69,8 @@
             </div>
         </div>
         {% endif %}
-        {% if record.edu.count %}
-            {% for edu_img in record.edu %}
+        {% if record.edu_images.count %}
+            {% for edu_img in record.edu_images %}
             <div class="col m6">
                 <div class="card small">
                     <div class="card-image">
@@ -85,12 +85,12 @@
         {% endif %}
     </div>
     <div class="card-action">
-        {% if not (record.edu.count >1 and record.edu.count >1 and record.photo) %}
+        {% if not (record.edu_images.count >1 and record.edu_images.count >1 and record.photo_image) %}
         <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始上传
             <i class="material-icons right">send</i>
         </button>
         {% endif %}
-        {% if (record.edu.count and record.edu.count and record.photo) %}
+        {% if (record.edu_images.count and record.edu_images.count and record.photo_image) %}
         <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >下一步：去支付！</a>
         {% endif %}
     </div>

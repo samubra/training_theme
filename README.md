@@ -1,5 +1,5 @@
 css:
-.lt-content {
+ .lt-content {
   padding: 0 0;
 }
 .collection-horizontal-btn{
@@ -13,11 +13,11 @@ css:
   padding-bottom: 0px;
 }
 .page-footer{
-    background-color:#455A64;  
+    background-color:#455A64;
     color:#8FA1A6;
 }
 .footer-copyright{
-    background-color:#37474F; 
+    background-color:#37474F;
     color:#E4500D;
     }
 ul#mobile-menu  li a{

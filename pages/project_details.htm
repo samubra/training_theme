@@ -21,7 +21,7 @@ slug = "{{ :slug }}"
                                 {% if project.active %}
                                     <a
                                         class="waves-effect waves-light btn-large red lighten-2"
-                                        href="{{ 'add_record'|page({'slug':project.slug}) }}"
+                                        href="{{ 'record_form'|page({'slug':project.slug}) }}"
                                     ><i class="material-icons left">add</i>开始报名</a>
                                 {% endif %}
                                 {% partial "pages-training/project_details" project=project %}

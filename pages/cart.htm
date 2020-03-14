@@ -1,40 +1,19 @@
 title = "购物车"
-url = "/user/checkouts"
+url = "/carts"
 layout = "octaskin"
 is_hidden = 0
 
-[account]
-redirect = "auth"
-paramCode = "code"
-forceSecure = 0
-
-[session]
-security = "user"
-redirect = "auth"
-
 [cart]
-
-[userAddresses]
 ==
 <div class="row">
     <div class="col l10 offset-l1">
         <div class="row">
-            <div class="col m8">
+            <div class="col m12">
                 <div class="card hoverable">
                     <div class="card-content section scrollspy" id="cart_list">
-                        {% flash %}
-                        <div class="card-panel teal lighten-2 white-text {{ type }}">{{ message }}</div>
-                        {% endflash %}
-                        {% if countRows %}
-                        {% partial 'pages-cart/list' carts=cartList addresses=addresses last_use=last_use_address %}
-                        {% else %}
-                        <div class="card-panel teal lighten-2 white-text">你的购物车是空的，请先填写报名信息再提交订单！</div>
-                        {% endif %}
+                        {% component 'cart' %}
                     </div>
                 </div>
-            </div>
-            <div class="col m4">
-                {% partial 'pages-auth/user-data' %}
             </div>
         </div>
     </div>

@@ -50,6 +50,9 @@ description = "Octaskin Layout"
           </div>
         </div>
       </section>
+        {% flash %}
+            <div class="card-panel teal lighten-2 white-text {{ type }}">{{ message }}</div>
+        {% endflash %}
       {% page %}
 
 

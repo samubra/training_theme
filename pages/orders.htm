@@ -1,0 +1,28 @@
+title = "用户订单"
+url = "/user/orders"
+layout = "octaskin"
+is_hidden = 0
+
+[account]
+forceSecure = 0
+redirect = "auth"
+
+[orders]
+==
+<div class="row">
+    <div class="col l10 offset-l1">
+        <div class="row">
+            <div class="col s12 l8">
+                <div class="card hoverable">
+                    <div class="card-content" id="account">
+                        {% component 'orders' %}{% component 'session' %}
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 l4">
+                {% partial 'pages-auth/user-data' %}
+            </div>
+
+        </div>
+    </div>
+</div>

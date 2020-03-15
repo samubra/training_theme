@@ -15,11 +15,24 @@ record_id = "{{ :id }}"
                     <div class="col s12 l12">
                         <div class="card  hoverable">
                             <div class="card-content" id="result">
-                                    <div class="card-panel teal lighten-2 white-text">
-                                        <p>1、提醒：上传的照片将被人工审核，照片和学历正面请保留原件，在到校参加培训时再交到培训老师手中。</p><p>2、注意：每张图片的大小不能超过2M。</p><p>3、人工审核不通过或需要重新上传，若无法上传请联系管理员。</p><p>4、寸照只允许上传一张，身份证和学历证明照片可以上传两张。</p>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <ul class="tabs">
+                                            <li class="tab col s3"><a class="active" href="#details">申请信息</a></li>
+                                            <li class="tab col s3"><a href="#upload">上传文档</a></li>
+                                        </ul>
                                     </div>
-                                <span class="card-title" >{{ record.project.plan.is_retraining ? '第四步' : '第二步' }}：上传培训所需的照片</span>
-                                    {% partial 'pages-training/add_attach_form' record=record %}
+                                    <div id="details" class="col s12">
+                                        {% partial 'pages-training/record_details' record=record %}
+                                    </div>
+                                    <div id="upload" class="col s12">
+                                        <div class="card-panel teal lighten-2 white-text">
+                                            <p>1、提醒：上传的照片将被人工审核，照片和学历正面请保留原件，在到校参加培训时再交到培训老师手中。</p><p>2、注意：每张图片的大小不能超过2M。</p><p>3、人工审核不通过或需要重新上传，若无法上传请联系管理员。</p><p>4、寸照只允许上传一张，身份证和学历证明照片可以上传两张。</p>
+                                        </div>
+                                        <span class="card-title" >第二步：上传培训所需的照片</span>
+                                        {% partial 'pages-training/add_attach_form' record=record %}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

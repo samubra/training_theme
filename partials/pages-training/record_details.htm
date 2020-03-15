@@ -1,0 +1,26 @@
+
+<div class="row">
+    <div class="col s12 m6">
+
+        <ul class="collection">
+            <li class="collection-item">编号：{{ record.num }}</li>
+            <li class="collection-item">姓名：{{ record.record_name }}</li>
+            <li class="collection-item">{{ record.id_type_text }}号码：{{ record.record_id_num }}</li>
+            <li class="collection-item">联系电话：{{ record.record_phone }}</li>
+            <li class="collection-item">联系地址：{{ record.record_address }}</li>
+            <li class="collection-item">单位名称：{{ record.record_company }}</li>
+        </ul>
+    </div>
+    <div class="col s12 m6">
+        <ul class="collection">
+            <li class="collection-item">受理状态：{{ record.status.name }}</li>
+            <li class="collection-item">考试成绩：{{ '理论：' ~ record.theory_score }},{{ '操作：' ~ record.operate_score }}，{{ record.is_eligible ? '已通过':'未通过' }}</li>
+            <li class="collection-item">培训项目：<a href="{{ project.url }}">{{ project.title }}</a></li>
+            <li class="collection-item">核发证书：{{ record.certificate.id_num }}( <a href="{{ category.url }}">{{ category.name }}</a>  )</li>
+            <li class="collection-item">订单状态：<a href="{{ order.url }}"> {{ order.getStatusOptions(order.status) }}</a></li>
+            <li class="collection-item">申请时间：{{ record.created_at|date('Y-m-d') }}</li>
+        </ul>
+    </div>
+</div>
+
+

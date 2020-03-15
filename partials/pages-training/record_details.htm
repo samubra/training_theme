@@ -17,7 +17,7 @@
             <li class="collection-item">考试成绩：{{ '理论：' ~ record.theory_score }},{{ '操作：' ~ record.operate_score }}，{{ record.is_eligible ? '已通过':'未通过' }}</li>
             <li class="collection-item">培训项目：<a href="{{ project.url }}">{{ project.title }}</a></li>
             <li class="collection-item">核发证书：{{ record.certificate.id_num }}( <a href="{{ category.url }}">{{ category.name }}</a>  )</li>
-            <li class="collection-item">订单状态：<a href="{{ order.url }}"> {{ order.getStatusOptions(order.status) }}</a></li>
+            <li class="collection-item">订单状态：<a href="{{ order.url }}"> {{ order.no }}({{ order.getStatusText(order.status) }})</a></li>
             <li class="collection-item">申请时间：{{ record.created_at|date('Y-m-d') }}</li>
         </ul>
     </div>

@@ -1,55 +1,15 @@
-title = "About"
-url = "/about"
+title = "帮助中心"
+url = "/user/help"
 layout = "octaskin"
 is_hidden = 0
-
-[Registration]
-mode = "submit"
-flash_on = 1
-redirect_on = 1
-redirect_page = "home"
-activation = "activation_on"
 ==
-<section id="lt-header" class="lt-section lt-section-fullwidth section">
-  <div class="lt-container container">
-    <div class="lt-content lt-header-content">
-      {% partial "pages-about/header" %}
+<div class="row">
+    <div class="col l10 offset-l1">
+        <div class="card hoverable">
+                    <div class="card-content" id="account">
+            
+            {% content "static-pages/help.htm" %}
+            </div>
+        </div>
     </div>
-  </div>
-</section>
-
-<section id="lt-mainpage" class="lt-section section">
-  <div class="lt-container container">
-    <div class="lt-content lt-mainpage-content">
-
-      {% set arError = Registration.getErrorMessage %}
-      {% set arForm = Registration.getOldFormData %}
-
-      <form href="{{ 'registration'|page }}">
-        <label for="field-email">Email</label>
-        <input type="email" id="field-email" placeholder="Email" name="email" value="{{ arForm.email }}">
-        {% if arError.message is not empty and arError.field == 'email' %}
-        <p>{{ arError.message }}</p>
-        {% endif %}
-
-        <label for="field-company-name">Company name</label>
-        <input type="text" id="field-company-name" placeholder="My company" name="property[company_name]" value="{{ arForm.property.company_name }}">
-
-        <label for="field-password">Password</label>
-        <input type="password" id="field-password" name="password">
-
-        <label for="field-password-confirmation">Password confirmation</label>
-        <input type="password" id="field-password-confirmation" name="password_confirmation">
-
-        <button type="submit">Submit</button>
-      </form>
-      {% if arError.message is not empty %}
-      <p>{{ arError.message }}</p>
-      {% endif %}
-
-
-
-    </div>
-  </div>
-</section>
-
+</div>

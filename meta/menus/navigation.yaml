@@ -14,9 +14,13 @@ items:
             isExternal: '0'
     -
         title: 动态
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: blog
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -43,6 +47,15 @@ items:
         reference: contact
         cmsPage: ''
         replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 帮助中心
+        type: cms-page
+        code: ''
+        reference: about
         viewBag:
             isHidden: '0'
             cssClass: ''

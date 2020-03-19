@@ -1,13 +1,9 @@
 <form data-request="onSaveAttach" data-request-data="record_id:'{{record.id}}'" data-request-files>
-
     <div class="card-action">
         {% if not (record.edu_images.count >1 and record.edu_images.count >1 and record.photo_image) %}
         <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始上传
             <i class="material-icons right">send</i>
         </button>
-        {% endif %}
-        {% if (record.edu_images.count and record.edu_images.count and record.photo_image) %}
-        <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >下一步：去支付！</a>
         {% endif %}
     </div>
     <div class="row">
@@ -89,9 +85,6 @@
         <button data-attach-loading class="btn waves-effect waves-light btn-large" type="submit" name="action">开始上传
             <i class="material-icons right">send</i>
         </button>
-        {% endif %}
-        {% if (record.edu_images.count and record.edu_images.count and record.photo_image) %}
-        <a href="{{ 'cart'|page }}" class="btn waves-effect waves-light btn-large" >上传完成，查看报名信息</a>
         {% endif %}
     </div>
 </form>
